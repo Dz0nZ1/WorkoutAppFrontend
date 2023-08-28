@@ -4,11 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78a0629e-6cd2-4e90-b753-03ab766cdf8e" name="Changes" comment="" />
+    <list default="true" id="78a0629e-6cd2-4e90-b753-03ab766cdf8e" name="Changes" comment="Created a Next.js project">
+      <change afterPath="$PROJECT_DIR$/workout-app/src/pages/users/create.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workout-app/src/pages/users/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workout-app/src/pages/_app.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workout-app/src/pages/_document.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workout-app/src/pages/api/hello.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workout-app/src/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/pages/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workout-app/src/styles/globals.css" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -32,6 +48,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Users\\DzOnZi\\WebstormProjects\\WorkoutAppFrontend\\workout-app\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -51,10 +68,23 @@
       <workItem from="1693146789010" duration="37000" />
       <workItem from="1693146853577" duration="10000" />
       <workItem from="1693147021995" duration="666000" />
+      <workItem from="1693147848821" duration="6487000" />
     </task>
+    <task id="LOCAL-00001" summary="Created a Next.js project">
+      <created>1693147912870</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1693147912870</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Created a Next.js project" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created a Next.js project" />
   </component>
 </project>
