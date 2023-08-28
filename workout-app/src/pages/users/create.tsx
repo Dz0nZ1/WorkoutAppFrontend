@@ -1,9 +1,11 @@
 import {useForm} from "react-hook-form";
+import {usersRequest} from "@/data";
+import {CreateUserQuery} from "@/types";
 
 export default  function CreateUserPage(){
 
     const {register, handleSubmit, formState: {errors}}
-        = useForm({
+        = useForm<CreateUserQuery>({
                 mode:"onSubmit"
             })
 
@@ -58,8 +60,7 @@ export default  function CreateUserPage(){
             {errors.password && (<div>{errors.password?.message as string}</div>)}<br/><br/>
 
 
-
-            <button onClick={() => { handleSubmit(data => {alert("Form is ready to send")})();
+            <button onClick={() => { handleSubmit(data => {usersRequest.create(data); alert("Registration completed successfully")})();
                 console.log(errors)}}>Submit</button>
 
         </>
