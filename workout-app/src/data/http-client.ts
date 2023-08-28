@@ -9,13 +9,23 @@ export const Axios = axios.create({
 });
 
 export const getDemo = async <T>(url:string, params?: unknown) => {
-    const response = await Axios.get<T>(url, {params});
-    return response.data;
+    try {
+        const response = await Axios.get<T>(url, { params });
+        return response.data;
+    } catch (error) {
+        const defaultErrorMessage = 'An error occurred while fetching the data.';
+        throw new Error(defaultErrorMessage);
+    }
 }
 
 export const postDemo = async <T>(url: string, params?:unknown) => {
-    const response = await Axios.post<T>(url, params);
-    return response.data;
+    try {
+        const response= await Axios.post<T>(url, params);
+        return response.data;
+    } catch (error) {
+        const defaultErrorMessage = 'An error occurred while making the request.';
+        throw new Error(defaultErrorMessage);
+    }
 }
 
 
