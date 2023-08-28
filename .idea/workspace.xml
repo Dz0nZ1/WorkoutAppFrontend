@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78a0629e-6cd2-4e90-b753-03ab766cdf8e" name="Changes" comment="Created a user from on create page">
+    <list default="true" id="78a0629e-6cd2-4e90-b753-03ab766cdf8e" name="Changes" comment="Updated http client">
+      <change afterPath="$PROJECT_DIR$/workout-app/src/validators/users/createUserValidator.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/src/data/endpoints.ts" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/data/endpoints.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workout-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workout-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workout-app/src/data/http-client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/data/http-client.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/src/data/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/data/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workout-app/src/pages/users/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/pages/users/create.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/types/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +73,7 @@
       <workItem from="1693146853577" duration="10000" />
       <workItem from="1693147021995" duration="666000" />
       <workItem from="1693147848821" duration="6487000" />
-      <workItem from="1693223997754" duration="14245000" />
+      <workItem from="1693223997754" duration="16780000" />
     </task>
     <task id="LOCAL-00001" summary="Created a Next.js project">
       <created>1693147912870</created>
@@ -131,7 +131,35 @@
       <option name="project" value="LOCAL" />
       <updated>1693246945645</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Created a post method for user requests">
+      <created>1693248917456</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1693248917456</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added a new endpoint for user registration">
+      <created>1693248972478</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1693248972478</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Added CreateUserQuery interface and used it on useForm">
+      <created>1693249050526</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1693249050526</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Updated http client">
+      <created>1693249084677</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1693249084677</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,6 +174,10 @@
     <MESSAGE value="Created swr hook for caching" />
     <MESSAGE value="Added file for swr keys" />
     <MESSAGE value="Created a user from on create page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created a user from on create page" />
+    <MESSAGE value="Created a post method for user requests" />
+    <MESSAGE value="Added a new endpoint for user registration" />
+    <MESSAGE value="Added CreateUserQuery interface and used it on useForm" />
+    <MESSAGE value="Updated http client" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated http client" />
   </component>
 </project>
