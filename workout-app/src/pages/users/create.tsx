@@ -1,67 +1,38 @@
 import {useForm} from "react-hook-form";
 import {usersRequest} from "@/data";
 import {CreateUserQuery} from "@/types";
+import {yupResolver} from "@hookform/resolvers/yup";
+import {createUserSchema} from "@/validators/users/createUserValidator";
 
 export default  function CreateUserPage(){
 
     const {register, handleSubmit, formState: {errors}}
         = useForm<CreateUserQuery>({
-                mode:"onSubmit"
+                mode:"onSubmit",
+                resolver: yupResolver(createUserSchema)
             })
 
 
     return (
         <>
             <h1>Create User Page</h1>
-            <input placeholder="Enter First Name" type="text" {...register("firstName", {
-                required:
-                "Field First name is required",
-                validate: (value : string) => {
-                    if (value.length < 2) {
-                        return "First name must have at least 2 chars"
-                    }
-                }
-                }
-            )
-            }/>
+            <input placeholder="Enter First Name" type="text" {...register("firstName")}/>
             {errors.firstName && (<div>{errors.firstName?.message as string}</div>)}<br/>
 
-            <input placeholder="Enter Last Name" type="text" {...register("lastName", {
-                required:
-                "Field Last name is required",
-                validate: (value: string) => {
-                    if(value.length < 2) {
-                        return "First name must have at least 2 chars"
-                    }
-                }
-            })}/>
+            <input placeholder="Enter Last Name" type="text" {...register("lastName")}/>
             {errors.lastName && (<div>{errors.lastName?.message as string}</div>)}<br/>
 
-            <input placeholder="Enter Email" type="text" {...register("email", {
-                required:
-                "Field email is required",
-                validate: (value : string) => {
-                    if(value.length < 2) {
-                        return "Email must have at least 2 chars"
-                    }
-                }
-            })}/>
+            <input placeholder="Enter Email" type="text" {...register("email")}/>
             {errors.email && (<div>{errors.email?.message as string}</div>)}<br/>
 
-            <input placeholder="Enter Password" type="text" {...register("password", {
-                required:
-                "Field password is required",
-                validate: (value: string) => {
-                    if(value.length < 2) {
-                        return "Email must have at least 2 chars"
-                    }
-                }
-            })}/>
+            <input placeholder="Enter Password" type="text" {...register("password")}/>
             {errors.password && (<div>{errors.password?.message as string}</div>)}<br/><br/>
 
 
-            <button onClick={() => { handleSubmit(data => {usersRequest.create(data); alert("Registration completed successfully")})();
-                console.log(errors)}}>Submit</button>
+            <button onClick={
+                () => { handleSubmit(
+                    data => {usersRequest.create(data); alert("Registration completed successfully")})();
+                }}>Submit</button>
 
         </>
     )
