@@ -1,29 +1,20 @@
 import Link from "next/link";
-import {useEffect, useState} from "react";
-import {usersRequest} from "@/data";
 import {User} from "@/types";
+import {useGetUsers} from "@/hooks/useGetUsers";
 
 export default function UserPage(){
 
-    const [users, setUsers] = useState<User>();
-
-
-    const fetchData = async () => {
-        const response = await usersRequest.all();
-        setUsers(response);
-    }
-
-    useEffect(() => {
-        fetchData();
-    }, [])
-
-    console.log(users);
-
-
+   const {data = [], error} = useGetUsers();
     return (
         <>
             <h1>User Page</h1>
            <Link href={'/'}>Go to home page</Link>
+
+            {data!.map((user: User) => {
+                return(
+                    <h1 key={user.id}>{user.email}</h1>
+                )
+            })}
         </>
     )
 }
