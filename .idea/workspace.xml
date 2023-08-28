@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78a0629e-6cd2-4e90-b753-03ab766cdf8e" name="Changes" comment="Added file for swr keys">
+    <list default="true" id="78a0629e-6cd2-4e90-b753-03ab766cdf8e" name="Changes" comment="Created a user from on create page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workout-app/src/data/endpoints.ts" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/data/endpoints.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workout-app/src/data/http-client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/data/http-client.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workout-app/src/data/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/data/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workout-app/src/pages/users/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/pages/users/create.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/src/pages/users/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/pages/users/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workout-app/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/types/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +73,7 @@
       <workItem from="1693146853577" duration="10000" />
       <workItem from="1693147021995" duration="666000" />
       <workItem from="1693147848821" duration="6487000" />
-      <workItem from="1693223997754" duration="12351000" />
+      <workItem from="1693223997754" duration="14245000" />
     </task>
     <task id="LOCAL-00001" summary="Created a Next.js project">
       <created>1693147912870</created>
@@ -123,7 +124,14 @@
       <option name="project" value="LOCAL" />
       <updated>1693240128217</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Created a user from on create page">
+      <created>1693246945645</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1693246945645</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,6 +145,7 @@
     <MESSAGE value="Changed pages files" />
     <MESSAGE value="Created swr hook for caching" />
     <MESSAGE value="Added file for swr keys" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added file for swr keys" />
+    <MESSAGE value="Created a user from on create page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created a user from on create page" />
   </component>
 </project>
