@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78a0629e-6cd2-4e90-b753-03ab766cdf8e" name="Changes" comment="Created a Next.js project">
-      <change afterPath="$PROJECT_DIR$/workout-app/src/pages/users/create.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workout-app/src/pages/users/index.tsx" afterDir="false" />
+    <list default="true" id="78a0629e-6cd2-4e90-b753-03ab766cdf8e" name="Changes" comment="Edited pages">
+      <change afterPath="$PROJECT_DIR$/workout-app/.env.production" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workout-app/src/data/endpoints.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workout-app/src/data/http-client.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workout-app/src/data/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workout-app/src/types/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/src/pages/_app.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/src/pages/_document.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/src/pages/api/hello.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/src/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/pages/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/src/styles/globals.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workout-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workout-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +23,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -37,26 +38,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Users\\DzOnZi\\WebstormProjects\\WorkoutAppFrontend\\workout-app\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\DzOnZi\\WebstormProjects\\WorkoutAppFrontend\\workout-app\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "TEXT"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;TEXT&quot;
     ]
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\DzOnZi\WebstormProjects\WorkoutAppFrontend\workout-app\src" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -69,6 +75,7 @@
       <workItem from="1693146853577" duration="10000" />
       <workItem from="1693147021995" duration="666000" />
       <workItem from="1693147848821" duration="6487000" />
+      <workItem from="1693223997754" duration="5582000" />
     </task>
     <task id="LOCAL-00001" summary="Created a Next.js project">
       <created>1693147912870</created>
@@ -77,7 +84,21 @@
       <option name="project" value="LOCAL" />
       <updated>1693147912870</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Created home and users pages">
+      <created>1693233617317</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1693233617317</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Edited pages">
+      <created>1693237241818</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1693237241818</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -85,6 +106,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created a Next.js project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created a Next.js project" />
+    <MESSAGE value="Created home and users pages" />
+    <MESSAGE value="Edited pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edited pages" />
   </component>
 </project>
