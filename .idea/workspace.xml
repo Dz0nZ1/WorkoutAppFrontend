@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78a0629e-6cd2-4e90-b753-03ab766cdf8e" name="Changes" comment="Updated http client">
-      <change afterPath="$PROJECT_DIR$/workout-app/src/validators/users/createUserValidator.ts" afterDir="false" />
+    <list default="true" id="78a0629e-6cd2-4e90-b753-03ab766cdf8e" name="Changes" comment="Created User Context">
+      <change afterPath="$PROJECT_DIR$/workout-app/src/components/contexts/UserSettingsContext.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/src/data/http-client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/data/http-client.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/src/pages/users/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/pages/users/create.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +16,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -73,7 +69,8 @@
       <workItem from="1693146853577" duration="10000" />
       <workItem from="1693147021995" duration="666000" />
       <workItem from="1693147848821" duration="6487000" />
-      <workItem from="1693223997754" duration="16780000" />
+      <workItem from="1693223997754" duration="18061000" />
+      <workItem from="1693315907000" duration="1993000" />
     </task>
     <task id="LOCAL-00001" summary="Created a Next.js project">
       <created>1693147912870</created>
@@ -159,7 +156,35 @@
       <option name="project" value="LOCAL" />
       <updated>1693249084677</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Created validation schema for user registration with yup">
+      <created>1693251411357</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1693251411357</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added yup resolver and updated input fields">
+      <created>1693251464703</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1693251464703</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Updated http client methods with error handling">
+      <created>1693251513125</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1693251513125</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Updated types file with new interfaces">
+      <created>1693317883491</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1693317883491</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,6 +203,11 @@
     <MESSAGE value="Added a new endpoint for user registration" />
     <MESSAGE value="Added CreateUserQuery interface and used it on useForm" />
     <MESSAGE value="Updated http client" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated http client" />
+    <MESSAGE value="Created validation schema for user registration with yup" />
+    <MESSAGE value="Added yup resolver and updated input fields" />
+    <MESSAGE value="Updated http client methods with error handling" />
+    <MESSAGE value="Updated types file with new interfaces" />
+    <MESSAGE value="Created User Context" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created User Context" />
   </component>
 </project>
