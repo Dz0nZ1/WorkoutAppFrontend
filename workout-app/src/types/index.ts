@@ -23,6 +23,10 @@ export interface CreateUserQuery {
     password: string
 }
 
+export interface UpdateUserQuery {
+    email: string;
+}
+
 
 //Context and reducer settings
 
