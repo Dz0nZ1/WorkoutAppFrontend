@@ -1,13 +1,17 @@
-
-import Link from "next/link";
+import UserPage from "@/pages/users";
+import {UserSettingsProvider} from "@/components/providers/UserSettingsProvider";
+import UpdateUserSettingsPage from "@/pages/users/update-user-settings";
 
 export default function HomePage() {
 
     return (
         <>
-            <h1>HomePage</h1>
-            <h2>Hello MiloNite</h2>
-            <Link href={"/users"}>go to user page</Link>
+            <UserSettingsProvider>
+                <UserPage/>
+                <br/>
+                <hr/>
+                <UpdateUserSettingsPage/>
+            </UserSettingsProvider>
         </>
     )
 }

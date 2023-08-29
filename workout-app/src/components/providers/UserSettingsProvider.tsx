@@ -10,7 +10,7 @@ export const UserSettingsProvider = ({children} : any) => {
         id: 99,
         firstName: "Nikola",
         lastName: "Lelekovic",
-        email: "lelekovic777@gmail.colm"
+        email: "lelekovic777@gmail.com"
     }
 
     // @ts-ignore
