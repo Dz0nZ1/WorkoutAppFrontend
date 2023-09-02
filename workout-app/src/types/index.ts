@@ -1,4 +1,6 @@
-import {Dispatch} from "react";
+import {Dispatch, ReactElement, ReactNode} from "react";
+import {NextPage} from "next";
+import {AppProps} from "next/app";
 
 //User settings
 
@@ -13,7 +15,10 @@ export interface User {
 
 export interface QueryOptions {
     pageIndex?: number,
-    rowNumber?: number
+    rowNumber?: number,
+    headers?: {
+        Authorization?: string
+    }
 }
 
 export interface CreateUserQuery {
@@ -46,4 +51,16 @@ export interface UserSettingsAction {
 export enum UserSettingsFunction {
     CHANGE_EMAIL = "CHANGE_EMAIL",
     CHANGE_FIRST_NAME = "CHANGE_FIRST_NAME"
+}
+
+
+//Layout settings
+
+export type NextPageWithLayout <P = {}> = NextPage<P> & {
+    authorization?: boolean,
+    getLayout?: (page: ReactElement) => ReactNode
+}
+
+export type AppPropsWithLayout = AppProps & {
+    Component: NextPageWithLayout;
 }
