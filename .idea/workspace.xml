@@ -4,14 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78a0629e-6cd2-4e90-b753-03ab766cdf8e" name="Changes" comment="Created User Provider">
-      <change afterPath="$PROJECT_DIR$/workout-app/src/pages/users/update-user-settings.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workout-app/src/validators/users/updateUserValidator.ts" afterDir="false" />
+    <list default="true" id="78a0629e-6cd2-4e90-b753-03ab766cdf8e" name="Changes" comment="Created a new user page">
+      <change afterPath="$PROJECT_DIR$/workout-app/src/app/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workout-app/src/app/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workout-app/src/app/provider.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workout-app/src/app/users/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workout-app/src/app/users/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workout-app/src/components/layout/TopNavBar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/src/components/providers/UserSettingsProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/components/providers/UserSettingsProvider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/src/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/pages/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/src/pages/users/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/pages/users/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/types/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workout-app/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +22,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -43,7 +44,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/DzOnZi/WebstormProjects/ULTIMATE REACT COURSE/react-quiz",
+    "last_opened_file_path": "C:/Users/DzOnZi/WebstormProjects/WorkoutAppFrontend/workout-app/src/app/user",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -59,6 +60,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\DzOnZi\WebstormProjects\WorkoutAppFrontend\workout-app\src\app\user" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\DzOnZi\WebstormProjects\WorkoutAppFrontend\workout-app\src" />
     </key>
@@ -76,7 +80,10 @@
       <workItem from="1693147021995" duration="666000" />
       <workItem from="1693147848821" duration="6487000" />
       <workItem from="1693223997754" duration="18061000" />
-      <workItem from="1693315907000" duration="5388000" />
+      <workItem from="1693315907000" duration="13524000" />
+      <workItem from="1693394287701" duration="1835000" />
+      <workItem from="1693498582186" duration="11073000" />
+      <workItem from="1693669873381" duration="12856000" />
     </task>
     <task id="LOCAL-00001" summary="Created a Next.js project">
       <created>1693147912870</created>
@@ -211,20 +218,97 @@
       <option name="project" value="LOCAL" />
       <updated>1693320051106</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Added a new interface for update">
+      <created>1693321475667</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1693321475667</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Created a User update page">
+      <created>1693321553130</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1693321553130</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Created a new update validator">
+      <created>1693321610760</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1693321610760</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Added context and provider to this pages">
+      <created>1693321711958</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1693321711958</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Deleted files for pages folder">
+      <created>1693687869909</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1693687869909</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Updated http client methods">
+      <created>1693687917262</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1693687917262</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Created global css file for tailwind">
+      <created>1693687965082</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1693687965082</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Created Next Auth file">
+      <created>1693688019873</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1693688019873</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Updated package.json">
+      <created>1693688061239</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1693688061239</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Updated with app directory">
+      <created>1693688117472</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1693688117472</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Updated user request, added parameters in all function">
+      <created>1693688199954</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1693688199954</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Added new type">
+      <created>1693688241520</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1693688241520</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Created a Next.js project" />
-    <MESSAGE value="Created home and users pages" />
-    <MESSAGE value="Edited pages" />
-    <MESSAGE value="Established http client with methods and added types for fetching" />
-    <MESSAGE value="Changed pages files" />
-    <MESSAGE value="Created swr hook for caching" />
-    <MESSAGE value="Added file for swr keys" />
     <MESSAGE value="Created a user from on create page" />
     <MESSAGE value="Created a post method for user requests" />
     <MESSAGE value="Added a new endpoint for user registration" />
@@ -237,6 +321,19 @@
     <MESSAGE value="Created User Context" />
     <MESSAGE value="Created User Reducer" />
     <MESSAGE value="Created User Provider" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created User Provider" />
+    <MESSAGE value="Added a new interface for update" />
+    <MESSAGE value="Created a User update page" />
+    <MESSAGE value="Created a new update validator" />
+    <MESSAGE value="Added context and provider to this pages" />
+    <MESSAGE value="Deleted files for pages folder" />
+    <MESSAGE value="Updated http client methods" />
+    <MESSAGE value="Created global css file for tailwind" />
+    <MESSAGE value="Created Next Auth file" />
+    <MESSAGE value="Updated package.json" />
+    <MESSAGE value="Updated with app directory" />
+    <MESSAGE value="Updated user request, added parameters in all function" />
+    <MESSAGE value="Added new type" />
+    <MESSAGE value="Created a new user page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created a new user page" />
   </component>
 </project>
