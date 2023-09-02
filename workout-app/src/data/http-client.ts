@@ -8,9 +8,9 @@ export const Axios = axios.create({
     },
 });
 
-export const getDemo = async <T>(url:string, params?: unknown) => {
+export const getDemo = async <T>(url:string, params?: any, config?: any ) => {
     try {
-        const response = await Axios.get<T>(url, { params });
+        const response = await Axios.get<T>(url, { params, headers:config?.headers});
         return response.data;
     } catch (error) {
         const defaultErrorMessage = 'An error occurred while fetching the data.';
