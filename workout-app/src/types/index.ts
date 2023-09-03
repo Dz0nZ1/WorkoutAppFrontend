@@ -32,6 +32,11 @@ export interface UpdateUserQuery {
     email: string;
 }
 
+export interface LoginQuery {
+    email: string,
+    password: string
+}
+
 
 //Context and reducer settings
 
@@ -52,6 +57,20 @@ export enum UserSettingsFunction {
     CHANGE_EMAIL = "CHANGE_EMAIL",
     CHANGE_FIRST_NAME = "CHANGE_FIRST_NAME"
 }
+
+export enum RoleEnum {
+  ADMIN = "Admin",
+  EMPLOYEE = "Employee",
+  USER = "User"
+}
+
+
+
+
+
+
+
+
 
 
 //Layout settings
