@@ -4,25 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78a0629e-6cd2-4e90-b753-03ab766cdf8e" name="Changes" comment="Created new layout">
-      <change afterPath="$PROJECT_DIR$/workout-app/src/app/admin/page.tsx" afterDir="false" />
+    <list default="true" id="78a0629e-6cd2-4e90-b753-03ab766cdf8e" name="Changes" comment="Created new auth settings">
       <change afterPath="$PROJECT_DIR$/workout-app/src/app/api/auth/[...nextauth]/route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workout-app/src/app/auth/login/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workout-app/src/app/employee/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workout-app/src/data/auth-routes.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workout-app/src/middleware.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workout-app/src/validators/users/loginUserValidator.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/.env.production" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/.env.production" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/next.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workout-app/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/src/components/layout/TopNavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/components/layout/TopNavBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/src/pages/api/auth/[...nextauth].ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/types/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +79,7 @@
       <workItem from="1693394287701" duration="1835000" />
       <workItem from="1693498582186" duration="11073000" />
       <workItem from="1693669873381" duration="12856000" />
-      <workItem from="1693742476646" duration="5516000" />
+      <workItem from="1693742476646" duration="6096000" />
     </task>
     <task id="LOCAL-00001" summary="Created a Next.js project">
       <created>1693147912870</created>
@@ -313,24 +298,83 @@
       <option name="project" value="LOCAL" />
       <updated>1693688241520</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Updated new constants">
+      <created>1693749419150</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1693749419150</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Deleted old auth settings">
+      <created>1693749465046</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1693749465046</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Created routes constants">
+      <created>1693749516452</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1693749516452</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Added LoginQuery to types">
+      <created>1693749561816</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1693749561816</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Created a login validator">
+      <created>1693749603261</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1693749603261</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Created a middleware for auth">
+      <created>1693749643361</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1693749643361</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Updated next config">
+      <created>1693749684931</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1693749684931</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Updated package json">
+      <created>1693749735438</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1693749735438</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Created new page">
+      <created>1693749806436</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1693749806436</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Updated Nav bar">
+      <created>1693749860815</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1693749860815</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Created a user from on create page" />
-    <MESSAGE value="Created a post method for user requests" />
-    <MESSAGE value="Added a new endpoint for user registration" />
-    <MESSAGE value="Added CreateUserQuery interface and used it on useForm" />
-    <MESSAGE value="Updated http client" />
-    <MESSAGE value="Created validation schema for user registration with yup" />
-    <MESSAGE value="Added yup resolver and updated input fields" />
-    <MESSAGE value="Updated http client methods with error handling" />
-    <MESSAGE value="Updated types file with new interfaces" />
-    <MESSAGE value="Created User Context" />
-    <MESSAGE value="Created User Reducer" />
     <MESSAGE value="Created User Provider" />
     <MESSAGE value="Added a new interface for update" />
     <MESSAGE value="Created a User update page" />
@@ -345,6 +389,17 @@
     <MESSAGE value="Updated user request, added parameters in all function" />
     <MESSAGE value="Added new type" />
     <MESSAGE value="Created a new user page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created a new user page" />
+    <MESSAGE value="Updated new constants" />
+    <MESSAGE value="Deleted old auth settings" />
+    <MESSAGE value="Created routes constants" />
+    <MESSAGE value="Added LoginQuery to types" />
+    <MESSAGE value="Created a login validator" />
+    <MESSAGE value="Created a middleware for auth" />
+    <MESSAGE value="Updated next config" />
+    <MESSAGE value="Updated package json" />
+    <MESSAGE value="Created new page" />
+    <MESSAGE value="Updated Nav bar" />
+    <MESSAGE value="Created new auth settings" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created new auth settings" />
   </component>
 </project>
