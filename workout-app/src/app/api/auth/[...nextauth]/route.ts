@@ -1,41 +1,45 @@
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-const handler =  NextAuth({
-    providers:[
+const handler = NextAuth({
+    providers: [
         CredentialsProvider({
-            name:"Credentials",
-            credentials:{
-                email:{label:"Email", type:"text", placeholder:"Enter email"},
-                password:{label:"Password", type:"password"},
+            name: "Credentials",
+            credentials: {
+                email: {label: "Email", type: "text", placeholder: "Enter email"},
+                password: {label: "Password", type: "password"},
             },
-
-            async authorize(credentials, req){
+            async authorize(credentials, req) {
                 const res = await fetch("http://localhost:8080/api/v1/auth/login", {
-                    method:"POST",
+                    method: "POST",
                     headers: {
-                        "Content-Type":"application/json",
+                        "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        email:credentials?.email,
-                        password:credentials?.password,
+                        email: credentials?.email,
+                        password: credentials?.password,
                     }),
                 });
+
                 const user = await res.json();
 
-                if(user){
-                    return user
-                }else {
+                if (user) {
+                    return user;
+                } else {
                     return null;
                 }
             },
         }),
     ],
-    callbacks:{
-        async jwt({token, user}) {
-            return {...token, ...user};
+    callbacks: {
+        async jwt({ token, user, trigger, session }) {
+            if (trigger === "update") {
+                return { ...token, ...session.user };
+            }
+            return { ...token, ...user };
         },
-        async session({session, token, user}) {
+
+        async session({ session, token }) {
             session.user = token as any;
             return session;
         },
