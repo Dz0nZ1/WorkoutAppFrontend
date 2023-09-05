@@ -4,28 +4,31 @@ export const Axios = axios.create({
     baseURL: process.env.NEXT_PUBLIC_REST_API_ENDPOINT,
     timeout: 150000000,
     headers: {
-        'Content-type': 'application/json',
+        'Content-Type': 'application/json',
     },
 });
 
-export const getDemo = async <T>(url:string, params?: any, config?: any ) => {
-    try {
-        const response = await Axios.get<T>(url, { params, headers:config?.headers});
-        return response.data;
-    } catch (error) {
-        const defaultErrorMessage = 'An error occurred while fetching the data.';
-        throw new Error(defaultErrorMessage);
-    }
+export const axiosAuth = axios.create({
+    baseURL: process.env.NEXT_PUBLIC_REST_API_ENDPOINT,
+    timeout: 150000000,
+    headers: {
+        'Content-Type': 'application/json',
+    },
+});
+
+
+export const getDemo = async <T>(url: string, params?: any, config?: any) => {
+    const response = await Axios.get<T>(url, {params, headers: config?.headers});
+    return response.data;
 }
 
-export const postDemo = async <T>(url: string, params?:unknown) => {
-    try {
-        const response= await Axios.post<T>(url, params);
-        return response.data;
-    } catch (error) {
-        const defaultErrorMessage = 'An error occurred while making the request.';
-        throw new Error(defaultErrorMessage);
-    }
+export const postDemo = async <T>(url: string, params?: any, config?: any) => {
+    const response = await Axios.post<T>(url, params, config);
+    return {data: response.data, status: response.status}
 }
+
+
+
+
 
 
