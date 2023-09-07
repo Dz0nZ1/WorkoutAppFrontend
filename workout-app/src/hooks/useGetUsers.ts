@@ -13,7 +13,7 @@ export const useGetUsers = () => {
         Authorization: `Bearer ${session?.user?.access_token}`
     }
 
-    const {data, error} = useSWR(
+    const {data, error, isLoading} = useSWR(
         `${SWR_KEYS.USERS_GET_ALL}`, () => {
             return usersRequest.all({}, {headers})},
         {
@@ -24,6 +24,6 @@ export const useGetUsers = () => {
             revalidateOnReconnect: true
         });
 
-    return {data, error};
+    return {data, error, isLoading};
 
 }
