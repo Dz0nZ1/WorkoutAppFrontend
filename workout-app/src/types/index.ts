@@ -37,6 +37,13 @@ export interface LoginQuery {
     password: string
 }
 
+export interface RegisterQuery {
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string
+}
+
 
 //Context and reducer settings
 
