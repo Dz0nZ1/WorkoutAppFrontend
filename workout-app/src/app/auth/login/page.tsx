@@ -5,6 +5,8 @@ import {LoginQuery} from "@/types";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {loginUserSchema} from "@/validators/users/loginUserValidator";
 import {useState} from "react";
+import {useRouter} from "next/navigation";
+
 
 interface IProps {
     searchParams?: { [key : string]: string | string[] | undefined}
@@ -12,7 +14,7 @@ interface IProps {
 
 export default function LoginPage({searchParams} : IProps) {
 
-    //console.log(searchParams?.message);
+    const router = useRouter();
 
     const {register, handleSubmit, formState: {errors}}
         = useForm<LoginQuery>({
@@ -24,7 +26,9 @@ export default function LoginPage({searchParams} : IProps) {
 
     return(
         <>
-            <div className="bg-gray-100 h-screen flex items-center justify-center">
+
+            {/*via-blue-400*/}
+            <div className="bg-gradient-to-b from-blue-500 via-blue-200 to-gray-100 h-screen flex items-center justify-center">
                 <div className="bg-white p-8 rounded-lg shadow-lg sm:w-96 w-full">
                     {!errorClose && (<div>
                        <button onClick={() => setErrorClose(errorClose => true)}>
@@ -44,6 +48,7 @@ export default function LoginPage({searchParams} : IProps) {
                                    placeholder="Your email" required/>
                             {errors.email && (<div>{errors.email?.message as string}</div>)}
                         </div>
+
                         <div className="mb-6">
                             <label htmlFor="password"
                                    className="block text-gray-700 text-sm font-bold mb-2">Password</label>
@@ -54,18 +59,18 @@ export default function LoginPage({searchParams} : IProps) {
                         <button
                                 className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded w-full"
                                 onClick={() => {
-                                    handleSubmit((data) => {
+                                    handleSubmit( (data) => {
+
                                         signIn("credentials", {
-                                            email: data.email,
-                                            password: data.password,
-                                            redirect: true,
-                                            callbackUrl: "/",
-                                        });
+                                                email: data.email,
+                                                password: data.password,
+                                                redirect: false
+                                        })
+                                        router.push("/");
                                     }) (); }}>Login
                         </button>
                 </div>
             </div>
-
         </>
     )
 }
