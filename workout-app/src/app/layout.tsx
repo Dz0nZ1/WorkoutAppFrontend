@@ -1,8 +1,10 @@
 import React from "react";
 import Provider from "@/app/provider";
 import "@/styles/globals.css"
-import TopNavBar from "@/components/layout/TopNavBar";
 import SessionStatus from "@/components/layout/SessionStatus";
+import {Providers} from "@/app/providers";
+import NewNavBar from "@/components/ui/NewNavBar";
+import Footer from "@/components/ui/footer";
 
 export const metadata = {
     title: 'MiloNite.app',
@@ -16,12 +18,15 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <html lang="en">
+        <html lang="en" className="light">
         <body style={{backgroundColor:"#fff"}}>
         <Provider>
           <SessionStatus>
-              <TopNavBar/>
-              {children}
+              <Providers >
+                  <NewNavBar/>
+                  {children}
+                  <Footer/>
+              </Providers>
           </SessionStatus>
         </Provider>
         </body>
