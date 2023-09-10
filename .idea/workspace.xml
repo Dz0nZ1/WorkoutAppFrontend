@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78a0629e-6cd2-4e90-b753-03ab766cdf8e" name="Changes" comment="Created new auth settings">
-      <change afterPath="$PROJECT_DIR$/workout-app/src/app/api/auth/[...nextauth]/route.ts" afterDir="false" />
+    <list default="true" id="78a0629e-6cd2-4e90-b753-03ab766cdf8e" name="Changes" comment="Created register page">
+      <change afterPath="$PROJECT_DIR$/workout-app/src/app/auth/register/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workout-app/src/app/providers.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workout-app/src/app/api/auth/[...nextauth]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/app/api/auth/[...nextauth]/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workout-app/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workout-app/tailwind.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/tailwind.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +42,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/DzOnZi/WebstormProjects/demo.frontend/demo&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/DzOnZi/WebstormProjects/ULTIMATE REACT COURSE/worldwise&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -80,27 +83,10 @@
       <workItem from="1693498582186" duration="11073000" />
       <workItem from="1693669873381" duration="12856000" />
       <workItem from="1693742476646" duration="6096000" />
-    </task>
-    <task id="LOCAL-00001" summary="Created a Next.js project">
-      <created>1693147912870</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1693147912870</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Created home and users pages">
-      <created>1693233617317</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1693233617317</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Edited pages">
-      <created>1693237241818</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1693237241818</updated>
+      <workItem from="1694186259145" duration="7455000" />
+      <workItem from="1694193880614" duration="5167000" />
+      <workItem from="1694259290758" duration="21141000" />
+      <workItem from="1694345517953" duration="1233000" />
     </task>
     <task id="LOCAL-00004" summary="Established http client with methods and added types for fetching">
       <created>1693237638156</created>
@@ -368,25 +354,90 @@
       <option name="project" value="LOCAL" />
       <updated>1693749860815</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Created auth-problems type">
+      <created>1694306104339</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1694306104340</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Created footer">
+      <created>1694306148939</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1694306148939</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Updated user validator">
+      <created>1694345628182</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1694345628182</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Updated SessionStatus">
+      <created>1694345688039</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1694345688039</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Added a RegisterQuery type">
+      <created>1694345736658</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1694345736658</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Added footer to main layout">
+      <created>1694345824356</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1694345824356</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Updated Loader with NextUI">
+      <created>1694345913071</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1694345913071</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Created mainCard component">
+      <created>1694345958099</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1694345958099</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Created NewNavBar">
+      <created>1694346023529</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1694346023530</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Updated the login page">
+      <created>1694346660749</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1694346660749</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Created register page">
+      <created>1694346762926</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1694346762926</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Created User Provider" />
-    <MESSAGE value="Added a new interface for update" />
-    <MESSAGE value="Created a User update page" />
-    <MESSAGE value="Created a new update validator" />
-    <MESSAGE value="Added context and provider to this pages" />
-    <MESSAGE value="Deleted files for pages folder" />
-    <MESSAGE value="Updated http client methods" />
-    <MESSAGE value="Created global css file for tailwind" />
-    <MESSAGE value="Created Next Auth file" />
-    <MESSAGE value="Updated package.json" />
-    <MESSAGE value="Updated with app directory" />
-    <MESSAGE value="Updated user request, added parameters in all function" />
     <MESSAGE value="Added new type" />
     <MESSAGE value="Created a new user page" />
     <MESSAGE value="Updated new constants" />
@@ -400,6 +451,18 @@
     <MESSAGE value="Created new page" />
     <MESSAGE value="Updated Nav bar" />
     <MESSAGE value="Created new auth settings" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created new auth settings" />
+    <MESSAGE value="Created auth-problems type" />
+    <MESSAGE value="Created footer" />
+    <MESSAGE value="Updated middleware" />
+    <MESSAGE value="Updated user validator" />
+    <MESSAGE value="Updated SessionStatus" />
+    <MESSAGE value="Added a RegisterQuery type" />
+    <MESSAGE value="Added footer to main layout" />
+    <MESSAGE value="Updated Loader with NextUI" />
+    <MESSAGE value="Created mainCard component" />
+    <MESSAGE value="Created NewNavBar" />
+    <MESSAGE value="Updated the login page" />
+    <MESSAGE value="Created register page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created register page" />
   </component>
 </project>
