@@ -5,9 +5,6 @@ import Loader from "@/components/ui/loader";
 import {useRouter} from "next/navigation";
 import {AuthProblems} from "@/types/auth-problems";
 
-
-
-
 export default function SessionStatusWrapper({
                                                  children,
                                              }: {
@@ -29,7 +26,6 @@ export default function SessionStatusWrapper({
     if(session?.user?.defaultMessage === AuthProblems.USER_NOT_FOUND){
         authProblem();
     }
-
 
 
     //@ts-ignore
