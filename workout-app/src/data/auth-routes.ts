@@ -1,5 +1,5 @@
 export const AUTH_ROUTES = {
-    ADMIN: ["/admin", "/employee", "/users"],
-    EMPLOYEE: ["/employee", "/users"],
-    USER: ["/users"]
+    ADMIN: ["/admin", "/workout", "/users", "/profile"],
+    // EMPLOYEE: ["/workout", "/users", "/profile"],
+    USER: ["/users", "/profile", "/workout"]
 }
