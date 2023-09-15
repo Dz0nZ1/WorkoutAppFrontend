@@ -44,6 +44,12 @@ export interface RegisterQuery {
     password: string
 }
 
+export interface CreatePlanQuery{
+    name: string,
+    user_identity: number,
+    exercises: any[]
+}
+
 
 //Context and reducer settings
 
