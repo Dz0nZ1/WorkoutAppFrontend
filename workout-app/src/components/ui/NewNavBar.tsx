@@ -11,10 +11,14 @@ export default function NewNavBar() {
 
     const {data: session} = useSession();
 
-    const menuItems: string[] = [
+
+    const menuItems: any[] = [
         "Admin",
         "Users",
-        "Employee"
+        "Workout",
+        "Profile",
+        // @ts-ignore
+        session?.user?.firstName
     ];
 
     return (
@@ -53,10 +57,19 @@ export default function NewNavBar() {
                 <NavbarItem>
                     <Link
                         color="foreground"
-                        href={"/employee"}
+                        href={"/workout"}
                         className="hover:text-primary transition duration-300"
                     >
-                        Employee
+                       Workout
+                    </Link>
+                </NavbarItem>
+                <NavbarItem>
+                    <Link
+                        color="foreground"
+                        href={"/profile"}
+                        className="hover:text-primary transition duration-300"
+                    >
+                        Profile
                     </Link>
                 </NavbarItem>
             </NavbarContent>
@@ -110,7 +123,7 @@ export default function NewNavBar() {
                                 color="primary"
                                 href="#"
                                 variant="flat"
-                                onPress={() => signOut({redirect: false})}
+                                onPress={() => signOut()}
                             >
                                 Sign Out
                             </Button>
@@ -129,7 +142,7 @@ export default function NewNavBar() {
                             color={index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"}
                             className="w-full hover:text-primary transition duration-300"
                             href={
-                            item === "Admin" ? '/admin' : item === "Users" ? "/users" : "/employee"
+                            item === "Admin" ? '/admin' : item === "Users" ? "/users" : item === "Workout" ? "/workout" : item === "Profile" ? "/profile" : "/"
                             }
                         >
                             {item}
