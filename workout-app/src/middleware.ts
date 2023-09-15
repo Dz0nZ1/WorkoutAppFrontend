@@ -21,11 +21,11 @@ export default withAuth(
                     return NextResponse.rewrite(new URL("/auth/login?message=You Are Not Authorized", req.url));
                 }
                 break;
-            case RoleEnum.EMPLOYEE:
-                if(!AUTH_ROUTES.EMPLOYEE.some(route => pathname.startsWith(route))){
-                    return NextResponse.rewrite(new URL("/auth/login?message=You Are Not Authorized", req.url));
-                }
-                break;
+            // case RoleEnum.EMPLOYEE:
+            //     if(!AUTH_ROUTES.EMPLOYEE.some(route => pathname.startsWith(route))){
+            //         return NextResponse.rewrite(new URL("/auth/login?message=You Are Not Authorized", req.url));
+            //     }
+            //     break;
         }
 
     },
@@ -37,5 +37,5 @@ export default withAuth(
 )
 
 export const config = {
-    matcher: ["/admin/:path*", "/users/:path*", "/employee/:path*"]
+    matcher: ["/admin/:path*", "/users/:path*", "/workout/:path*"]
 };
