@@ -70,7 +70,7 @@ export default function RegisterPage({searchParams} : IProps) {
                         onClick={
                             () => { handleSubmit(
                                 data => {usersRequest.create(data); router.push("/auth/login")})();
-                            }}>Sign up
+                            }}>Register new account
                     </button>
                 </div>
             </div>
