@@ -1,5 +1,5 @@
 import {getDemo, postDemo} from "@/data/http-client";
-import {CreateUserQuery, QueryOptions, User} from "@/types";
+import {CreatePlanQuery, CreateUserQuery, QueryOptions, User} from "@/types";
 import {API_ENDPOINTS} from "@/data/endpoints";
 
 export const usersRequest = {
@@ -7,4 +7,9 @@ export const usersRequest = {
         getDemo<User[]>(API_ENDPOINTS.USERS_GET_ALL, {...query}, config),
     create: ({...query} : CreateUserQuery ) =>
         postDemo<User>(API_ENDPOINTS.USERS_REGISTER, {...query})
+};
+
+export const planRequest = {
+    create: ({...query} : CreatePlanQuery, config?: any ) =>
+        postDemo<User>(API_ENDPOINTS.PLAN_CREATE, {...query}, config)
 };
