@@ -70,7 +70,7 @@ export default function TopNavBar() {
                             <button>
                                 <Link
                                     className="text-white hover:text-gray-300"
-                                    href={"/employee"}
+                                    href={"/workout"}
                                 >
                                     Employee
                                 </Link>
@@ -137,7 +137,7 @@ export default function TopNavBar() {
                             <li>
                                 <Link
                                     className="text-white hover:text-gray-300"
-                                    href={"/employee"}
+                                    href={"/workout"}
                                 >
                                     Employee
                                 </Link>
