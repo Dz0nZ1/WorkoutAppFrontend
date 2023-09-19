@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78a0629e-6cd2-4e90-b753-03ab766cdf8e" name="Changes" comment="updated SessionStatus">
+    <list default="true" id="78a0629e-6cd2-4e90-b753-03ab766cdf8e" name="Changes" comment="updated workspace">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/src/components/layout/SessionStatus.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/components/layout/SessionStatus.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/src/components/layout/TopNavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/components/layout/TopNavBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/src/data/swrKeys.ts" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/data/swrKeys.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/src/hooks/useGetUsers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/hooks/useGetUsers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workout-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workout-app/src/app/admin/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/app/admin/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workout-app/src/app/profile/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/app/profile/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,42 +87,10 @@
       <workItem from="1694345517953" duration="12664000" />
       <workItem from="1694635070047" duration="20431000" />
       <workItem from="1694689741075" duration="49930000" />
-      <workItem from="1694772876774" duration="678000" />
-    </task>
-    <task id="LOCAL-00024" summary="Deleted files for pages folder">
-      <created>1693687869909</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1693687869909</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Updated http client methods">
-      <created>1693687917262</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1693687917262</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Created global css file for tailwind">
-      <created>1693687965082</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1693687965082</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Created Next Auth file">
-      <created>1693688019873</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1693688019873</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Updated package.json">
-      <created>1693688061239</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1693688061239</updated>
+      <workItem from="1694772876774" duration="2883000" />
+      <workItem from="1694993751326" duration="4528000" />
+      <workItem from="1695056268146" duration="12024000" />
+      <workItem from="1695149562585" duration="1240000" />
     </task>
     <task id="LOCAL-00029" summary="Updated with app directory">
       <created>1693688117472</created>
@@ -433,17 +400,48 @@
       <option name="project" value="LOCAL" />
       <updated>1694773533168</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="updated SessionStatus">
+      <created>1694773596127</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1694773596127</updated>
+    </task>
+    <task id="LOCAL-00074" summary="Updated swrKeys">
+      <created>1694773622870</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1694773622870</updated>
+    </task>
+    <task id="LOCAL-00075" summary="Updated TopNavBar">
+      <created>1694773641744</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1694773641744</updated>
+    </task>
+    <task id="LOCAL-00076" summary="Updated hook">
+      <created>1694773666919</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1694773666919</updated>
+    </task>
+    <task id="LOCAL-00077" summary="updated workspace">
+      <created>1694773683268</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1694773683268</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Created mainCard component" />
-    <MESSAGE value="Created NewNavBar" />
-    <MESSAGE value="Updated the login page" />
-    <MESSAGE value="Created register page" />
     <MESSAGE value="Created a nextUI provder" />
     <MESSAGE value="added an error property to pages object" />
     <MESSAGE value="Updated tailwind config with nextUI" />
@@ -465,6 +463,10 @@
     <MESSAGE value="Updated user page" />
     <MESSAGE value="Created workout page" />
     <MESSAGE value="updated SessionStatus" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated SessionStatus" />
+    <MESSAGE value="Updated swrKeys" />
+    <MESSAGE value="Updated TopNavBar" />
+    <MESSAGE value="Updated hook" />
+    <MESSAGE value="updated workspace" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated workspace" />
   </component>
 </project>
