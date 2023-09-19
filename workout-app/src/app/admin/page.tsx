@@ -7,9 +7,11 @@ import {useSession} from "next-auth/react";
 import {useState} from "react";
 import {useCreateExercise} from "@/hooks/useCreateExercise";
 import {useDeleteExerciseById} from "@/hooks/useDeleteExerciseById";
+import useAuth from "@/hooks/useAuth";
 
 export default function AdminPage() {
 
+    const axiosAuth = useAuth();
     const {data: session} = useSession();
     const {data: exercises, isLoading, error} = useGetExercises();
     const {data: users} = useGetUsers();
@@ -19,7 +21,7 @@ export default function AdminPage() {
     //@ts-ignore
     const {createExercise}  = useCreateExercise();
     //@ts-ignore
-    const {deleteExerciseById} = useDeleteExerciseById();
+    // const {deleteExerciseById} = useDeleteExerciseById();
     const [exercise, setExercise] = useState<object>({
         name:'',
         photo: '',
@@ -59,7 +61,17 @@ export default function AdminPage() {
 
     const handleDelete = (e: any) => {
         e.preventDefault();
-        deleteExerciseById(deleteExercise);
+        axiosAuth.delete(`http://localhost:8080/api/v1/exercise/delete/${deleteExercise}`)
+            .then((response) => {
+                // Handle success
+                alert("Exercise: " + deleteExercise + " was deleted");
+            })
+            .catch((error) => {
+                // Handle error
+                console.error("Error deleting exercise:", error);
+                alert("Error deleting exercise: " + error.message);
+            });
+        // deleteExerciseById(deleteExercise);
         alert("Exercise: " + deleteExercise + "was deleted");
     }
 
@@ -230,9 +242,10 @@ export default function AdminPage() {
                             <select onChange={handleDeleteChange}
                                     id="delete_exercise"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option>Choose the exercise</option>
                                 {exercises?.map((ex, i) => {
                                   return(
-                                      <option value={ex.exercise_id} key={i}>{ex.name}</option>
+                                          <option value={ex.exerciseId} key={i}>{ex.name}</option>
                                   )
                                 })}
                             </select>
