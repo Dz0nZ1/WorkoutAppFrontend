@@ -54,7 +54,7 @@ export default function ProfilePage(){
                                            <dt className="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
                                                Number of plans
                                            </dt>
-                                           <dd className="order-1 text-5xl font-extrabold text-gray-700">{allUserPlans.length}</dd>
+                                           <dd className="order-1 text-5xl font-extrabold text-gray-700">{allUserPlans?.length}</dd>
                                        </div>
                                    </dl>
                                </div>
