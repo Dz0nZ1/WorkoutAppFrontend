@@ -1,7 +1,7 @@
 # WorkoutAppFrontend
 
 ### Overview
-The Workout App Frontend is designed to assist you in tracking your workouts by enabling the creation, editing, deletion and viewing of custom workout plans. This application provides a systematic approach to organizing your fitness routines.
+The Workout App is designed to assist you in tracking your workouts by enabling the creation, editing, deletion and viewing of custom workout plans. This application provides a systematic approach to organizing your fitness routines.
 
 <hr>
 
