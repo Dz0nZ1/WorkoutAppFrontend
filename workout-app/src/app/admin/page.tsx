@@ -5,9 +5,9 @@ import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell} from "@
 import {useGetUsers} from "@/hooks/useGetUsers";
 import {useSession} from "next-auth/react";
 import {useState} from "react";
-import {useCreateExercise} from "@/hooks/useCreateExercise";
-import {useDeleteExerciseById} from "@/hooks/useDeleteExerciseById";
 import useAuth from "@/hooks/useAuth";
+import axios from "axios";
+import {API_ENDPOINTS} from "@/data/endpoints";
 
 export default function AdminPage() {
 
@@ -18,10 +18,6 @@ export default function AdminPage() {
     const userHeader : string[] = ["NAME", "LASTNAME", "EMAIL", "ACTIVE"];
     const exerciseHeader : string[] = ["NAME", "CATEGORY", "PHOTO"]
     const [manageStatus, setMangeStatus] = useState<string>("create");
-    //@ts-ignore
-    const {createExercise}  = useCreateExercise();
-    //@ts-ignore
-    // const {deleteExerciseById} = useDeleteExerciseById();
     const [exercise, setExercise] = useState<object>({
         name:'',
         photo: '',
@@ -31,7 +27,7 @@ export default function AdminPage() {
 
     const [deleteExercise, setDeleteExercise] = useState();
 
-    const handleInputChange = (e) => {
+    const handleInputChange = (e : any) => {
         const { name, value } = e.target;
 
         // Update the corresponding form field in the state
@@ -39,6 +35,15 @@ export default function AdminPage() {
             ...exercise,
             [name]: value,
         });
+    };
+
+
+    const createExercise = async (data : any) => {
+        try {
+            const res = await axiosAuth.post(API_ENDPOINTS.EXERCISE_CREATE, data);
+        } catch (error) {
+            console.log(error);
+        }
     };
 
 
@@ -55,24 +60,31 @@ export default function AdminPage() {
     }
 
 
-    const handleDeleteChange = (e) => {
+    const handleDeleteChange = (e : any) => {
         setDeleteExercise(e.target.value);
     }
 
-    const handleDelete = (e: any) => {
+
+    const deleteEx = async (ex) => {
+        try {
+            const headers = {
+                // @ts-ignore
+                Authorization: `Bearer ${session?.user?.access_token}`,
+            };
+
+            const res = await axios.delete(`http://localhost:8080/api/v1/exercise/delete/${ex}`, {headers})
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+
+
+
+
+    const handleDelete = async (e: any) => {
         e.preventDefault();
-        axiosAuth.delete(`http://localhost:8080/api/v1/exercise/delete/${deleteExercise}`)
-            .then((response) => {
-                // Handle success
-                alert("Exercise: " + deleteExercise + " was deleted");
-            })
-            .catch((error) => {
-                // Handle error
-                console.error("Error deleting exercise:", error);
-                alert("Error deleting exercise: " + error.message);
-            });
-        // deleteExerciseById(deleteExercise);
-        alert("Exercise: " + deleteExercise + "was deleted");
+        deleteEx(deleteExercise);
     }
 
 
@@ -226,7 +238,7 @@ export default function AdminPage() {
                             </div>
 
                             <button
-                                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                className="px-4 py-2 text-white bg-blue-400 hover:bg-blue-500 rounded-lg"
                                 onClick={handleCreate}>Submit
                             </button>
 
@@ -243,7 +255,7 @@ export default function AdminPage() {
                                     id="delete_exercise"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option>Choose the exercise</option>
-                                {exercises?.map((ex, i) => {
+                                {exercises?.map((ex : object, i) => {
                                   return(
                                           <option value={ex.exerciseId} key={i}>{ex.name}</option>
                                   )
@@ -252,7 +264,7 @@ export default function AdminPage() {
                             <br/>
 
                             <button
-                                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                className="px-4 py-2 text-white bg-blue-400 hover:bg-blue-500 rounded-lg"
                                 onClick={handleDelete}>Submit
                             </button>
 
