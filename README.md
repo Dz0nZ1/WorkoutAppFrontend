@@ -7,8 +7,8 @@ The Workout App is designed to assist you in tracking your workouts by enabling 
 
 ### Getting Started
 
-### 1. npm install
-### 2. npm run dev
+#### 1. npm install
+#### 2. npm run dev
 
 <hr>
 
@@ -27,6 +27,8 @@ Edit and Delete Plans: Modify existing workout plans or remove them as needed to
 Next.js: A powerfull and fast front-end framework.
 
 npm: The package manager for JavaScript is used for managing project dependencies.
+
+<hr>
 
 ### Acknowledgments
 Special thanks to the fitness community for inspiring and contributing to the development of this application.
