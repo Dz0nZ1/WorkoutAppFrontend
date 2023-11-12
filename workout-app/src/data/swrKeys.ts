@@ -18,6 +18,15 @@ export const SWR_KEYS = {
    PLAN_CREATE: "createPlan",
    PLAN_UPDATE: "updatePlan",
    PLAN_DELETE: "deletePlan",
-   PLAN_GET_ALL_WITH_ID: "getAllPlanWithID"
+   PLAN_GET_ALL_WITH_ID: "getAllPlanWithID",
+
+   //PROPERTIES
+
+   PROPERTY_GET_ALL: "getAllProperty",
+   PROPERTY_GET: "getProperty",
+   PROPERTY_GET_FOR_PLAN: "getPropertyForPlan",
+   PROPERTY_CREATE: "createProperty",
+   PROPERTY_UPDATE: "updateProperty",
+   PROPERTY_DELETE: "deleteProperty",
 
 }
