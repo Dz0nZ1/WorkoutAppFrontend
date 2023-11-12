@@ -78,6 +78,13 @@ export default function ProfilePage(){
                                            <div className="text-gray-600 text-sm mt-2">
                                                <h1 className="mb-1">Exercise Name: {ex.name}</h1>
                                                <h1>Category: {ex.category}</h1>
+                                               {plan.properties.filter(prop => prop.forExercise == ex.name).map(filterProp => (
+                                                   <>
+                                                       <h1>Reps: {filterProp.reps}</h1>
+                                                       <h1>Sets: {filterProp.sets}</h1>
+                                                       <h1>Weight: {filterProp.weight}kg</h1>
+                                                   </>
+                                               ))}
                                            </div>
                                        </div>
                                    ))}
