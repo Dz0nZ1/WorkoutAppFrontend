@@ -29,7 +29,7 @@ const useAuth = () => {
                     prevRequest.sent = true;
 
                     // @ts-ignore
-                    const refreshTokenResponse = await refreshToken();
+                    const refreshTokenResponse = refreshToken;
 
                     // @ts-ignore
                     prevRequest.headers["Authorization"] = `Bearer ${refreshTokenResponse.access_token}`;
