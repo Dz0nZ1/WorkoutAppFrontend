@@ -1,12 +1,34 @@
 # WorkoutAppFrontend
-Frontend part of the project WorkoutApp done in Next.js
 
-# How to start the application
+### Overview
+The Workout App Frontend is designed to assist you in tracking your workouts by enabling the creation, editing, deletion and viewing of custom workout plans. This application provides a systematic approach to organizing your fitness routines.
 
-1. npm install
-2. npm run dev
+<hr>
 
-# Key features of the application
-1. Creating workout plans
-2. Viewing created plans
-3. Editing and deleting plans
+### Getting Started
+
+### 1. npm install
+### 2. npm run dev
+
+<hr>
+
+### Features
+
+Create Workout Plans: Design and customize your workout plans to suit your fitness goals.
+
+View Created Plans: Access an overview of your created workout plans for easy reference.
+
+Edit and Delete Plans: Modify existing workout plans or remove them as needed to adapt to your evolving fitness routine.
+
+<hr>
+
+### Technologies Used
+
+Next.js: A powerfull and fast front-end framework.
+
+npm: The package manager for JavaScript is used for managing project dependencies.
+
+### Acknowledgments
+Special thanks to the fitness community for inspiring and contributing to the development of this application.
+
+
