@@ -23,6 +23,17 @@ export const API_ENDPOINTS = {
     PLAN_CREATE: "/api/v1/plan/create",
     PLAN_UPDATE: "/api/v1/plan/update/",
     PLAN_DELETE: "/api/v1/plan/delete/",
-    PLAN_GET_ALL_WITH_ID:"/api/v1/plan/user/"
+    PLAN_GET_ALL_WITH_ID:"/api/v1/plan/user/",
+
+
+
+    //PROPERTIES ENDPOINTS
+    PROPERTY_GET_ALL: "/api/v1/properties/all",
+    PROPERTY_GET: "/api/v1/properties/get/",
+    PROPERTY_CREATE: "/api/v1/properties/create",
+    PROPERTY_UPDATE: "/api/v1/properties/update/",
+    PROPERTY_DELETE: "/api/v1/properties/delete/",
+
+
 
 }
