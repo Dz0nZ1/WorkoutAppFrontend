@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="78a0629e-6cd2-4e90-b753-03ab766cdf8e" name="Changes" comment="updated workspace">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workout-app/src/app/admin/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/app/admin/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workout-app/src/app/profile/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/workout-app/src/app/profile/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,27 +32,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/DzOnZi/WebstormProjects/ULTIMATE REACT COURSE/worldwise&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\DzOnZi\\WebstormProjects\\WorkoutAppFrontend\\workout-app\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/DzOnZi/WebstormProjects/WorkoutAppFrontend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Users\\DzOnZi\\WebstormProjects\\WorkoutAppFrontend\\workout-app\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;TEXT&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "TEXT"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\DzOnZi\WebstormProjects\WorkoutAppFrontend\workout-app\src\app\user" />
@@ -90,28 +88,9 @@
       <workItem from="1694772876774" duration="2883000" />
       <workItem from="1694993751326" duration="4528000" />
       <workItem from="1695056268146" duration="12024000" />
-      <workItem from="1695149562585" duration="1240000" />
-    </task>
-    <task id="LOCAL-00029" summary="Updated with app directory">
-      <created>1693688117472</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1693688117472</updated>
-    </task>
-    <task id="LOCAL-00030" summary="Updated user request, added parameters in all function">
-      <created>1693688199954</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1693688199954</updated>
-    </task>
-    <task id="LOCAL-00031" summary="Added new type">
-      <created>1693688241520</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1693688241520</updated>
+      <workItem from="1695149562585" duration="2570000" />
+      <workItem from="1696094646747" duration="63000" />
+      <workItem from="1696521683486" duration="3552000" />
     </task>
     <task id="LOCAL-00032" summary="Updated new constants">
       <created>1693749419150</created>
@@ -435,15 +414,34 @@
       <option name="project" value="LOCAL" />
       <updated>1694773683268</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="Updated admin page">
+      <created>1695152999593</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1695152999593</updated>
+    </task>
+    <task id="LOCAL-00079" summary="Updated profile page">
+      <created>1695153033869</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1695153033869</updated>
+    </task>
+    <task id="LOCAL-00080" summary="updated workspace">
+      <created>1695153086835</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1695153086835</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Created a nextUI provder" />
-    <MESSAGE value="added an error property to pages object" />
     <MESSAGE value="Updated tailwind config with nextUI" />
     <MESSAGE value="Updated the home page" />
     <MESSAGE value="Updated workspace.xml" />
@@ -466,6 +464,8 @@
     <MESSAGE value="Updated swrKeys" />
     <MESSAGE value="Updated TopNavBar" />
     <MESSAGE value="Updated hook" />
+    <MESSAGE value="Updated admin page" />
+    <MESSAGE value="Updated profile page" />
     <MESSAGE value="updated workspace" />
     <option name="LAST_COMMIT_MESSAGE" value="updated workspace" />
   </component>
