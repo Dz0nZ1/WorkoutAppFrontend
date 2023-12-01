@@ -1,16 +1,16 @@
-import useSWR from "swr";
+import useSWR, {mutate} from "swr";
 import {SWR_KEYS} from "@/data/swrKeys";
 import {useSession} from "next-auth/react";
 import useAuth from "@/hooks/useAuth";
 import {API_ENDPOINTS} from "@/data/endpoints";
 
-export const useGetPlansWithId = (id : any) => {
+export const useGetPlansWithId = (id : string | number) => {
 
     const {data: session} = useSession();
 
     const axiosAuth = useAuth();
 
-    const fetchPlansWithId = async () => {
+    const fetchPlansWithId = async (id : string | number) => {
         try {
             const headers = {
                 // @ts-ignore
@@ -24,9 +24,14 @@ export const useGetPlansWithId = (id : any) => {
 
     };
 
+
+    const revalidatePlans = () => {
+        mutate(`${SWR_KEYS.PLAN_GET_ALL_WITH_ID}/${id}`);
+    };
+
     const {data, error, isLoading} = useSWR(
-        `${SWR_KEYS.PLAN_GET_ALL_WITH_ID}`, () => {
-            return fetchPlansWithId();
+        `${SWR_KEYS.PLAN_GET_ALL_WITH_ID}/${id}`, () => {
+            return fetchPlansWithId(id);
         },
         {
             refreshInterval: 90000,
@@ -36,6 +41,6 @@ export const useGetPlansWithId = (id : any) => {
             revalidateOnReconnect: true
         });
 
-    return {data, error, isLoading};
+    return {data, error, isLoading, revalidatePlans};
 
 }
