@@ -9,9 +9,12 @@ import { API_ENDPOINTS } from "@/data/endpoints";
 
 //components
 import SingleWorkout from "@/components/workout/SingleWorkout";
+import {Exercise, Property} from "@/types/entities";
+import {useCreateProperty} from "@/hooks/useCreateProperty";
+import {useGetPropertiesByName} from "@/hooks/useGetPropertiesByName";
+import {useDeletePropertyById} from "@/hooks/useDeletePropertyById";
 
 export default function CreatePlanForm() {
-    const axiosAuth = useAuth();
     const { data: session } = useSession();
     const { data: exercises } = useGetExercises();
 
@@ -28,50 +31,33 @@ export default function CreatePlanForm() {
         properties: [],
     });
 
+    //hook functions
+    const {createPlan, error: createPlanError, isLoading: createPlanLoading} = useCreatePlan()
+    const {createProperty, error: createPropertyError, isLoading: createPropertyLoading} = useCreateProperty();
+    const {getPropertiesByName, error: getPropertiesByNameError, isLoading:getPropertiesByNameIsLoading} = useGetPropertiesByName();
+    const {deleteProperty, error:deletePropertyError, isLoading: deletePropertyIsLoading } = useDeletePropertyById()
 
 
-    const createProperty = async (data: any) => {
-        try {
-            const res = await axiosAuth.post(API_ENDPOINTS.PROPERTY_CREATE, data);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    const getPropertiesByName = async (name: string) => {
-        try {
-            const res = await axiosAuth.get(`${API_ENDPOINTS.PROPERTY_GET}${name}`);
-            return res.data;
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-
-    const createPlan = async (data : any) => {
-        try {
-            const res = await axiosAuth.post(API_ENDPOINTS.PLAN_CREATE, data);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-
-    const handleSubmit = (e : any) => {
+    const handleSubmit = async (e : any) : Promise<void> => {
         e.preventDefault();
-        // console.log(formData.properties)
-         createPlan(formData);
-        //console.log(JSON.stringify(formData));
+          await createPlan(formData);
         alert("Plan has been created");
     };
 
-    // Funkcija za uklanjanje vežbe iz plana
-    const removeFromPlan = (ex : any) => {
-        const newPlan = exercisePlan.filter((v) => v !== ex);
+    //This function deletes exercises from plan
+    const removeFromPlan = async (ex : any) : Promise<void> => {
+        const newPlan = exercisePlan.filter((exercise) => exercise !== ex);
         setExercisePlan(newPlan);
+        const newList = await getPropertiesByName(formData.name);
+        const deletedExercise =  newList.filter((prop : Property) => {
+            return prop.forExercise === ex.name;
+        });
+        await deleteProperty(deletedExercise[0].propertyId);
+        //
+        return;
     };
 
-    const handleAddExercises = async () => {
+    const handleAddExercises = async () : Promise<void> => {
         const newList = await getPropertiesByName(formData.name);
         setFormData((prevFormData: any) => {
             return {
@@ -102,11 +88,12 @@ export default function CreatePlanForm() {
                     Choose the exercises:
                 </h3>
                 <ul className="list-disc pl-6 mt-2">
-                    {exercises?.map((ex, index) => (
+                    {exercises?.map((ex : Exercise, index : number) => (
                         <SingleWorkout
                             ex={ex}
                             key={index}
                             triggerUpdatePropertyList={(newProperty: any) => {
+                                // @ts-ignore
                                 setPropertyList((prevPropertyList) => {
                                     return [...prevPropertyList, newProperty];
                                 });
@@ -114,6 +101,7 @@ export default function CreatePlanForm() {
                                 const newProperties = { ...newProperty, forPlan: formData.name, forExercise: ex.name};
                                 createProperty(newProperties);
 
+                                // @ts-ignore
                                 setExercisePlan((prevPlan) => {
                                     return [...prevPlan, ex];
                                 });
@@ -126,7 +114,7 @@ export default function CreatePlanForm() {
                 <hr className="my-8" />
                 <h3 className="text-lg font-semibold">Current plan:</h3>
                 <ul className="list-disc pl-6 mt-2">
-                    {exercisePlan.map((ex, index) => (
+                    {exercisePlan.map((ex : Exercise, index : number) => (
                         <li key={index} className="mb-2">
                             {ex.name}
                             <button
