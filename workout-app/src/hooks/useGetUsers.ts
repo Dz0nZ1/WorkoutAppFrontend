@@ -1,4 +1,4 @@
-import useSWR from "swr";
+import useSWR, {mutate} from "swr";
 import {SWR_KEYS} from "@/data/swrKeys";
 import {useSession} from "next-auth/react";
 import useAuth from "@/hooks/useAuth";
@@ -26,8 +26,9 @@ export const useGetUsers = () => {
     };
 
 
-
-    //usersRequest.all({}, {headers})
+    const revalidateUsers = () => {
+        mutate(SWR_KEYS.USERS_GET_ALL);
+    };
 
     const {data, error, isLoading} = useSWR(
         `${SWR_KEYS.USERS_GET_ALL}`, () => {
@@ -41,6 +42,6 @@ export const useGetUsers = () => {
             revalidateOnReconnect: true
         });
 
-    return {data, error, isLoading};
+    return {data, error, isLoading, revalidateUsers};
 
 }
