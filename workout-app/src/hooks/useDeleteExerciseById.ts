@@ -5,13 +5,13 @@ import useAuth from "@/hooks/useAuth";
 import {API_ENDPOINTS} from "@/data/endpoints";
 
 // @ts-ignore
-export const useDeleteExerciseById = (id) => {
+export const useDeleteExerciseById = (id? : string | number) => {
 
     const {data: session} = useSession();
 
     const axiosAuth = useAuth();
 
-    const deleteExercise = async (id : any) => {
+    const deleteExercise = async (id? : string | number) => {
         try {
             const headers = {
                 // @ts-ignore
@@ -24,11 +24,13 @@ export const useDeleteExerciseById = (id) => {
 
     };
 
+    const deleteExerciseHandler = (id : any) => {
+        return deleteExercise(id);
+    };
 
-    const {data, error, isLoading} = useSWR(
-        `${SWR_KEYS.EXERCISE_DELETE}${id}`, () => {
-            return deleteExerciseHandler(id);
-        },
+    const { error, isLoading } = useSWR(
+        id ? `${SWR_KEYS.EXERCISE_DELETE}${id}` : null,
+        () => deleteExerciseHandler(id),
         {
             refreshInterval: 90000,
             revalidateIfStale: true,
@@ -37,12 +39,9 @@ export const useDeleteExerciseById = (id) => {
             revalidateOnReconnect: true
         });
 
-    const deleteExerciseHandler = (id : any) => {
-        return deleteExercise(id);
-    };
 
     return {
-        deleteExerciseById: deleteExerciseHandler,
+        deleteExercise: deleteExerciseHandler,
         error,
         isLoading
     };
