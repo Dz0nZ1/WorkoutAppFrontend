@@ -1,4 +1,4 @@
-import useSWR from "swr";
+import useSWR, {mutate} from "swr";
 import {SWR_KEYS} from "@/data/swrKeys";
 import {useSession} from "next-auth/react";
 import useAuth from "@/hooks/useAuth";
@@ -24,6 +24,11 @@ export const useGetExercises = () => {
 
     };
 
+    const revalidateExercises = () => {
+        mutate(SWR_KEYS.EXERCISE_GET_ALL); // Manually trigger a re-fetch of exercises
+    };
+
+
     const {data, error, isLoading} = useSWR(
         `${SWR_KEYS.EXERCISE_GET_ALL}`, () => {
             return fetchExercises();
@@ -36,6 +41,6 @@ export const useGetExercises = () => {
             revalidateOnReconnect: true
         });
 
-    return {data, error, isLoading};
+    return {data, error, isLoading, revalidateExercises};
 
 }
