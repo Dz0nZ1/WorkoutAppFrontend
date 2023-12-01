@@ -5,13 +5,13 @@ import useAuth from "@/hooks/useAuth";
 import {API_ENDPOINTS} from "@/data/endpoints";
 
 // @ts-ignore
-export const useDeletePlan = (id) => {
+export const useDeletePlan = (id? : string | number) => {
 
     const {data: session} = useSession();
 
     const axiosAuth = useAuth();
 
-    const deletePlan = async (id : any) => {
+    const deletePlan = async (id? : string | number) => {
         try {
             const headers = {
                 // @ts-ignore
@@ -24,9 +24,14 @@ export const useDeletePlan = (id) => {
 
     };
 
+    const deletePlanHandler = (id? : any) => {
+        return deletePlan(id);
+    };
 
-    const {data, error, isLoading} = useSWR(
-        `${SWR_KEYS.PLAN_DELETE}${id}`, () => {
+
+
+    const {error, isLoading} = useSWR(
+        id ? `${SWR_KEYS.PLAN_DELETE}${id}` : null, () => {
             return deletePlanHandler(id);
         },
         {
@@ -37,9 +42,6 @@ export const useDeletePlan = (id) => {
             revalidateOnReconnect: true
         });
 
-    const deletePlanHandler = (id : any) => {
-        return deletePlan(id);
-    };
 
     return {
         deletePlanById: deletePlanHandler,
