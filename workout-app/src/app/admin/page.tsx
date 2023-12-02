@@ -1,33 +1,45 @@
 "use client"
 
 import {useGetExercises} from "@/hooks/useGetExercises";
-import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell} from "@nextui-org/react";
+import {Table, TableBody, TableCell, TableColumn, TableHeader, TableRow} from "@nextui-org/react";
 import {useGetUsers} from "@/hooks/useGetUsers";
 import {useSession} from "next-auth/react";
 import {useState} from "react";
-import useAuth from "@/hooks/useAuth";
-import axios from "axios";
-import {API_ENDPOINTS} from "@/data/endpoints";
+import {CreateExercise, Exercise, ExerciseStatus} from "@/types/entities";
+import {useCreateExercise} from "@/hooks/useCreateExercise";
+import {useDeleteExerciseById} from "@/hooks/useDeleteExerciseById";
+import Loader from "@/components/ui/loader";
+import {User} from "@/types";
+import toast from "react-hot-toast";
 
 export default function AdminPage() {
 
-    const axiosAuth = useAuth();
     const {data: session} = useSession();
-    const {data: exercises, isLoading, error} = useGetExercises();
-    const {data: users} = useGetUsers();
+    const {data: exercises, isLoading: getExerciseIsLoading, error: getExerciseError, revalidateExercises} = useGetExercises();
+    const {data: users, isLoading: getUsersIsLoading, error:getUsersError} = useGetUsers();
     const userHeader : string[] = ["NAME", "LASTNAME", "EMAIL", "ACTIVE"];
-    const exerciseHeader : string[] = ["NAME", "CATEGORY", "PHOTO"]
-    const [manageStatus, setMangeStatus] = useState<string>("create");
-    const [exercise, setExercise] = useState<object>({
+    const exerciseHeader : string[] = ["NAME", "CATEGORY"]
+
+    //Manage status
+    const [manageStatus, setMangeStatus] = useState<ExerciseStatus>(ExerciseStatus.CREATE);
+    const [exercise, setExercise] = useState<CreateExercise>({
         name:'',
         photo: '',
         category: ''
-
     });
 
-    const [deleteExercise, setDeleteExercise] = useState();
+    //argument for delete method
+    const [deletedExercise, setDeleteExercise] = useState();
 
-    const handleInputChange = (e : any) => {
+
+    //hook functions
+    const {createExercise} = useCreateExercise();
+    const {deleteExercise} = useDeleteExerciseById(deletedExercise);
+
+
+
+
+    const handleInputChange = (e : any) : void => {
         const { name, value } = e.target;
 
         // Update the corresponding form field in the state
@@ -38,20 +50,13 @@ export default function AdminPage() {
     };
 
 
-    const createExercise = async (data : any) => {
-        try {
-            const res = await axiosAuth.post(API_ENDPOINTS.EXERCISE_CREATE, data);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-
-
-    const handleCreate = (e: any) => {
+    const  handleCreate = async (e: any) : Promise<void> => {
         e.preventDefault();
-        createExercise(exercise);
-        alert("Exercise added");
+        await toast.promise(createExercise(exercise).then(() => revalidateExercises()), {
+            loading: 'Loading',
+            success: 'Exercise was created successfully',
+            error: 'Error creating exercise',
+        });
         setExercise({
             name:'',
             photo: '',
@@ -60,31 +65,34 @@ export default function AdminPage() {
     }
 
 
-    const handleDeleteChange = (e : any) => {
+    const handleDeleteChange = (e : any) : void => {
         setDeleteExercise(e.target.value);
     }
 
 
-    const deleteEx = async (ex) => {
-        try {
-            const headers = {
-                // @ts-ignore
-                Authorization: `Bearer ${session?.user?.access_token}`,
-            };
-
-            const res = await axios.delete(`http://localhost:8080/api/v1/exercise/delete/${ex}`, {headers})
-        } catch (error) {
-            console.log(error);
-        }
-
+    const handleDelete = async (e: any) : Promise<void> => {
+        e.preventDefault();
+        await toast.promise(deleteExercise(deletedExercise).then(() => revalidateExercises()), {
+            loading: 'Loading',
+            success: 'Exercise was deleted successfully',
+            error: 'Error deleting exercise',
+        });
     }
 
 
+    if(getExerciseIsLoading) {
+        return <Loader/>
+    }
 
+    if(getUsersIsLoading) {
+        return <Loader/>
+    }
 
-    const handleDelete = async (e: any) => {
-        e.preventDefault();
-        deleteEx(deleteExercise);
+    if(getExerciseError) {
+        return <div>{getExerciseError.message}</div>
+    }
+    if(getUsersError) {
+        return <div>{getUsersError.message}</div>
     }
 
 
@@ -111,12 +119,12 @@ export default function AdminPage() {
                     <div className="w-full md:w-1/2 p-4">
                         <Table aria-label="Example empty table">
                             <TableHeader>
-                                {userHeader.map((head, index) => (
+                                {userHeader.map((head : string, index : number) => (
                                     <TableColumn key={index}>{head}</TableColumn>
                                 ))}
                             </TableHeader>
                             <TableBody>
-                                {users?.map((user: object, index: number) => (
+                                {users?.map((user: User, index: number) => (
                                     <TableRow key={index + 1}>
                                         <TableCell className="text-blue-500" key={index + 2}>
                                             {
@@ -150,12 +158,12 @@ export default function AdminPage() {
                     <div className="w-full md:w-1/2 p-4">
                         <Table aria-label="Example empty table">
                             <TableHeader>
-                                {exerciseHeader.map((ex, index) => (
+                                {exerciseHeader.map((ex : string, index : number) => (
                                     <TableColumn key={index + 6}>{ex}</TableColumn>
                                 ))}
                             </TableHeader>
                             <TableBody>
-                                {exercises?.map((exercise :object, index: number) => (
+                                {exercises?.map((exercise : Exercise, index: number) => (
                                     <TableRow key={index + 7}>
                                         <TableCell className="text-blue-500" key={index + 8}>
                                             {
@@ -169,12 +177,12 @@ export default function AdminPage() {
                                                 exercise?.category
                                             }
                                         </TableCell>
-                                        <TableCell className="text-blue-500" key={index + 10}>
-                                            {
-                                                // @ts-ignore
-                                                exercise?.photo
-                                            }
-                                        </TableCell>
+                                        {/*<TableCell className="text-blue-500" key={index + 10}>*/}
+                                        {/*    {*/}
+                                        {/*        // @ts-ignore*/}
+                                        {/*        exercise?.photo*/}
+                                        {/*    }*/}
+                                        {/*</TableCell>*/}
                                     </TableRow>
                                 ))}
                             </TableBody>
@@ -183,16 +191,16 @@ export default function AdminPage() {
                 </div>
 
 
-                <h1 className="text-3xl text-blue-400 flex justify-center mt-4 mb-4">Manage Exercises</h1>
+                <h1 className="text-3xl text-blue-400 flex justify-center mt-16 mb-4">Manage Exercises</h1>
                 <div className="flex justify-center space-x-4">
-                    <button onClick={() => {setMangeStatus((manageStatus) => "create")}}
+                    <button onClick={() => {setMangeStatus((manageStatus : ExerciseStatus) => ExerciseStatus.CREATE)}}
                         className="px-4 py-2 text-white bg-blue-400 hover:bg-blue-500 rounded-lg">
                         CREATE
                     </button>
-                    <button onClick={() => {setMangeStatus((manageStatus) => "update")}} className="px-4 py-2 text-white bg-blue-400 hover:bg-blue-500 rounded-lg">
+                    <button onClick={() => {setMangeStatus((manageStatus : ExerciseStatus) => ExerciseStatus.UPDATE)}} className="px-4 py-2 text-white bg-blue-400 hover:bg-blue-500 rounded-lg">
                         UPDATE
                     </button>
-                    <button onClick={() => {setMangeStatus((manageStatus) => "delete")}}
+                    <button onClick={() => {setMangeStatus((manageStatus : ExerciseStatus) => ExerciseStatus.DELETE)}}
                         className="px-4 py-2 text-white bg-blue-400 hover:bg-blue-500 rounded-lg">
                         DELETE
                     </button>
@@ -201,9 +209,9 @@ export default function AdminPage() {
 
 
                 <form >
-                    {manageStatus === "create" &&
+                    {manageStatus === ExerciseStatus.CREATE &&
 
-                        <>
+                        <div className="w-1/2 flex flex-col items-center m-auto mb-24">
                             <div className="relative z-0 w-full mb-6 group">
                                 <input type="text" name="name" id="name"
                                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -239,14 +247,15 @@ export default function AdminPage() {
 
                             <button
                                 className="px-4 py-2 text-white bg-blue-400 hover:bg-blue-500 rounded-lg"
-                                onClick={handleCreate}>Submit
+                                onClick={handleCreate}>Create
                             </button>
 
-                        </>
+                        </div>
 
                     }
 
-                    {manageStatus === "delete" &&
+
+                    {manageStatus === ExerciseStatus.DELETE &&
 
                         <>
                             <label htmlFor="delete_exercise" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -255,7 +264,7 @@ export default function AdminPage() {
                                     id="delete_exercise"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option>Choose the exercise</option>
-                                {exercises?.map((ex : object, i) => {
+                                {exercises?.map((ex : Exercise, i : number) => {
                                   return(
                                           <option value={ex.exerciseId} key={i}>{ex.name}</option>
                                   )
