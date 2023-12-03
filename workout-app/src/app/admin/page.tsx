@@ -11,14 +11,17 @@ import {useDeleteExerciseById} from "@/hooks/useDeleteExerciseById";
 import Loader from "@/components/ui/loader";
 import {User} from "@/types";
 import toast from "react-hot-toast";
+import {useGetExerciseById} from "@/hooks/useGetExerciseById";
+import {useUpdateExercise} from "@/hooks/useUpdateExercise";
 
 export default function AdminPage() {
 
     const {data: session} = useSession();
-    const {data: exercises, isLoading: getExerciseIsLoading, error: getExerciseError, revalidateExercises} = useGetExercises();
+    const {data:exercises, isLoading: getExerciseIsLoading, error: getExerciseError, revalidateExercises} = useGetExercises();
     const {data: users, isLoading: getUsersIsLoading, error:getUsersError} = useGetUsers();
     const userHeader : string[] = ["NAME", "LASTNAME", "EMAIL", "ACTIVE"];
     const exerciseHeader : string[] = ["NAME", "CATEGORY"]
+
 
     //Manage status
     const [manageStatus, setMangeStatus] = useState<ExerciseStatus>(ExerciseStatus.CREATE);
@@ -30,12 +33,18 @@ export default function AdminPage() {
 
     //argument for delete method
     const [deletedExercise, setDeleteExercise] = useState();
-
+    const [updatedExercise, setUpdatedExercise] = useState<Exercise>({
+        exerciseId: "",
+        name:'',
+        photo: '',
+        category: ''
+    });
 
     //hook functions
     const {createExercise} = useCreateExercise();
-    const {deleteExercise} = useDeleteExerciseById(deletedExercise);
-
+    const {deleteExercise} = useDeleteExerciseById();
+    const {getExerciseById} = useGetExerciseById();
+    const {updateExercise} = useUpdateExercise();
 
 
 
@@ -69,6 +78,12 @@ export default function AdminPage() {
         setDeleteExercise(e.target.value);
     }
 
+    const handleUpdateChange = async (e : any)  => {
+        if(e.target.value == "") return;
+        setUpdatedExercise(await getExerciseById(e.target.value));
+        console.log(updatedExercise);
+    }
+
 
     const handleDelete = async (e: any) : Promise<void> => {
         e.preventDefault();
@@ -76,6 +91,22 @@ export default function AdminPage() {
             loading: 'Loading',
             success: 'Exercise was deleted successfully',
             error: 'Error deleting exercise',
+        });
+    }
+
+    const  handleUpdate = async (e: any) : Promise<void> => {
+        e.preventDefault();
+        const {exerciseId, name, photo, category} = updatedExercise
+        const rest = {name, photo, category};
+        await toast.promise(updateExercise(rest, exerciseId).then(() => revalidateExercises()), {
+            loading: 'Loading',
+            success: 'Exercise was updated successfully',
+            error: 'Error updating exercise',
+        });
+        setExercise({
+            name:'',
+            photo: '',
+            category: ''
         });
     }
 
@@ -255,27 +286,100 @@ export default function AdminPage() {
                     }
 
 
+                    {manageStatus === ExerciseStatus.UPDATE &&
+
+                        <>
+                            <label htmlFor="update_exercise" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-center">
+                                Choose the exercise you want to update</label>
+                           <div className="flex justify-center">
+                               <select onChange={handleUpdateChange}
+                                       id="update_exercise"
+                                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-7">
+                                   <option value="">Choose the exercise</option>
+                                   {exercises?.map((ex : Exercise, i : number) => {
+                                       return(
+                                           <option value={ex.exerciseId} key={i}>{ex.name}</option>
+                                       )
+                                   })}
+                               </select>
+                           </div>
+
+
+                            <div className="w-1/2 flex flex-col items-center m-auto mb-24">
+                                <div className="relative z-0 w-full mb-6 group">
+
+                                    <input type="text" name="name" id="name"
+                                           className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                           placeholder=" " required
+                                           onChange={(e) => setUpdatedExercise({...updatedExercise, name: e.target.value})}
+                                           value={updatedExercise?.name || ""}
+                                    />
+                                    <label htmlFor="name"
+                                           className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                                        Exercise name</label>
+                                </div>
+                                <div className="relative z-0 w-full mb-6 group">
+                                    <input type="text" name="photo" id="photo"
+                                           className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                           placeholder=" " required
+                                           onChange={(e) => setUpdatedExercise({...updatedExercise, photo: e.target.value})}
+                                           value={updatedExercise?.photo || ""}
+                                    />
+                                    <label htmlFor="photo"
+                                           className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Exercise Photo</label>
+                                </div>
+                                <div className="relative z-0 w-full mb-6 group">
+                                    <input type="text" name="category" id="category"
+                                           className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                           placeholder=" " required
+                                           onChange={(e) => setUpdatedExercise({...updatedExercise, category: e.target.value})}
+                                           value={updatedExercise?.category || ""}
+                                    />
+                                    <label htmlFor="category"
+                                           className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Exercise Category
+                                    </label>
+                                </div>
+
+                                <button
+                                    className="px-4 py-2 text-white bg-blue-400 hover:bg-blue-500 rounded-lg"
+                                    onClick={handleUpdate}>Update
+                                </button>
+
+                            </div>
+
+                        </>
+
+                    }
+
+
+
+
                     {manageStatus === ExerciseStatus.DELETE &&
 
                         <>
-                            <label htmlFor="delete_exercise" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            <label htmlFor="delete_exercise" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-center">
                                 Choose the exercise you want to delete</label>
-                            <select onChange={handleDeleteChange}
-                                    id="delete_exercise"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option>Choose the exercise</option>
-                                {exercises?.map((ex : Exercise, i : number) => {
-                                  return(
-                                          <option value={ex.exerciseId} key={i}>{ex.name}</option>
-                                  )
-                                })}
-                            </select>
+                           <div className="flex justify-center">
+                               <select onChange={handleDeleteChange}
+                                       id="delete_exercise"
+                                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                   <option>Choose the exercise</option>
+                                   {exercises?.map((ex : Exercise, i : number) => {
+                                       return(
+                                           <option value={ex.exerciseId} key={i}>{ex.name}</option>
+                                       )
+                                   })}
+                               </select>
+                           </div>
+
                             <br/>
 
-                            <button
-                                className="px-4 py-2 text-white bg-blue-400 hover:bg-blue-500 rounded-lg"
-                                onClick={handleDelete}>Submit
-                            </button>
+                            <div className="flex justify-center">
+                                <button
+                                    className="px-4 py-2 text-white bg-blue-400 hover:bg-blue-500 rounded-lg"
+                                    onClick={handleDelete}>Delete
+                                </button>
+                            </div>
 
                         </>
 
