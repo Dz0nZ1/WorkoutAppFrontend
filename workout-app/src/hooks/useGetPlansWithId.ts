@@ -12,14 +12,20 @@ export const useGetPlansWithId = (id : string | number) => {
 
     const fetchPlansWithId = async (id : string | number) => {
         try {
+            // @ts-ignore
+            if (!session?.user?.access_token) {
+                throw new Error('Access token not available');
+            }
+
+
             const headers = {
                 // @ts-ignore
-                Authorization: `Bearer ${session?.user?.access_token}`
+                Authorization: `Bearer ${session.user.access_token}`
             }
             const res = await axiosAuth.get(`${API_ENDPOINTS.PLAN_GET_ALL_WITH_ID}${id}` ,{headers});
             return res.data;
         }catch (error){
-            console.log(error);
+            console.log('Fetch Plans Error:', error);
         }
 
     };
