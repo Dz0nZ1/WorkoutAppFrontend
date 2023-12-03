@@ -6,6 +6,7 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import {loginUserSchema} from "@/validators/users/loginUserValidator";
 import {useState} from "react";
 import {useRouter} from "next/navigation";
+import toast from "react-hot-toast";
 
 
 interface IProps {
@@ -62,11 +63,17 @@ export default function LoginPage({searchParams} : IProps) {
                                     handleSubmit( (data) => {
 
                                         signIn("credentials", {
-                                                email: data.email,
-                                                password: data.password,
-                                                redirect: false
-                                        })
-                                        router.push("/");
+                                            email: data.email,
+                                            password: data.password,
+                                            redirect: false
+                                        }).then(r =>
+                                            {
+                                                router.push("/");
+                                                toast(`Welcome back! ${data.email}`, {
+                                                    icon: '👋',
+                                                });
+                                            }
+                                        )
                                     }) (); }}>Login
                         </button>
                 </div>
