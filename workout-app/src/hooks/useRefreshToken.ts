@@ -1,3 +1,5 @@
+"use client"
+
 import {signIn, useSession} from "next-auth/react";
 import {postDemo} from "@/data/http-client";
 
@@ -30,5 +32,5 @@ export const useRefreshToken = () => {
         }
     }
 
-    return {refreshToken};
+    return refreshToken;
 }
