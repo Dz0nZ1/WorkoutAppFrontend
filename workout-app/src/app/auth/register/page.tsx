@@ -6,6 +6,7 @@ import {useState} from "react";
 import {registerUserSchema} from "@/validators/users/reisterUserValidator";
 import {usersRequest} from "@/data";
 import {useRouter} from "next/navigation";
+import toast from "react-hot-toast";
 
 interface IProps {
     searchParams?: { [key : string]: string | string[] | undefined}
@@ -69,7 +70,12 @@ export default function RegisterPage({searchParams} : IProps) {
                         className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded w-full"
                         onClick={
                             () => { handleSubmit(
-                                data => {usersRequest.create(data); router.push("/auth/login")})();
+                                data => {usersRequest.create(data).then(r =>
+                                    {
+                                        router.push("/auth/login");
+                                        toast.success(`You have successfully registered ${data.firstName}`)
+                                    }
+                                ); })();
                             }}>Register new account
                     </button>
                 </div>
