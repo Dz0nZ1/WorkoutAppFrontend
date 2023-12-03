@@ -2,18 +2,29 @@
 import {useSession} from "next-auth/react";
 import {useGetPlansWithId} from "@/hooks/useGetPlansWithId";
 import {useDeletePlan} from "@/hooks/useDeletePlan";
+import {Exercise, Plan, Property} from "@/types/entities";
+import toast from "react-hot-toast";
 
 
 export default function ProfilePage(){
 
-     const {data: session} = useSession();
-     //@ts-ignore
-     const {data: allUserPlans} = useGetPlansWithId(session?.user.user_id);
+     const {data : session} = useSession();
+    //@ts-ignore
+     const {data: allUserPlans, revalidatePlans} = useGetPlansWithId(session?.user.user_id);
      //@ts-ignore
      const {deletePlanById} = useDeletePlan()
 
     console.log(allUserPlans);
     console.log(session);
+
+  const handleDeletePlan = async (id : string | number) : Promise<void> => {
+      await toast.promise(deletePlanById(id).then(() => revalidatePlans()), {
+          loading: 'Loading',
+          success: 'Plan was successfully deleted',
+          error: 'Error deleting this plan',
+      });
+  }
+
 
     return(
        <>
@@ -41,14 +52,18 @@ export default function ProfilePage(){
                                            <dt className="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
                                                Name
                                            </dt>
-                                           <dd className="order-1 text-5xl font-extrabold text-gray-700">{session?.user?.firstName}</dd>
+                                           <dd className="order-1 text-5xl font-extrabold text-gray-700">{
+                                               session?.user?.firstName
+                                           }</dd>
                                        </div>
                                        <div
                                            className="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
                                            <dt className="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
                                                Lastname
                                            </dt>
-                                           <dd className="order-1 text-5xl font-extrabold text-gray-700">{session?.user?.lastName}</dd>
+                                           <dd className="order-1 text-5xl font-extrabold text-gray-700">{
+                                               session?.user?.lastName
+                                           }</dd>
                                        </div>
                                        <div className="flex flex-col border-t border-gray-100 p-6 text-center sm:border-0 sm:border-l">
                                            <dt className="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
@@ -66,36 +81,38 @@ export default function ProfilePage(){
 
 
                 <br/><br/>
-               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                   {allUserPlans?.map((plan, index) => (
-                       <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden">
-                           <div className="px-6 py-4">
-                               <h2 className="text-xl font-semibold text-gray-800 mb-2">{plan.name}</h2>
-                               <div className="grid grid-cols-2 gap-2">
-                                   {plan.exercises.map((ex, i) => (
-                                       <div key={i} className="bg-gray-100 p-4 rounded-lg">
-                                           <img src={ex.photo} alt="Exercise Photo" className="w-full h-32 object-cover rounded-lg" />
-                                           <div className="text-gray-600 text-sm mt-2">
-                                               <h1 className="mb-1">Exercise Name: {ex.name}</h1>
-                                               <h1>Category: {ex.category}</h1>
-                                               {plan.properties.filter(prop => prop.forExercise == ex.name).map(filterProp => (
-                                                   <>
-                                                       <h1>Reps: {filterProp.reps}</h1>
-                                                       <h1>Sets: {filterProp.sets}</h1>
-                                                       <h1>Weight: {filterProp.weight}kg</h1>
-                                                   </>
-                                               ))}
-                                           </div>
-                                       </div>
-                                   ))}
-                               </div>
-                                <br/>
-                               <button className="ml-2 bg-red-400 text-white rounded px-3 py-1 focus:outline-none hover:bg-red-600" onClick={() => deletePlanById(plan.planId)}>Remove</button>
+              <div className="container mx-auto">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {allUserPlans?.map((plan : Plan) => (
+                          <div key={plan.name} className="bg-white shadow-lg rounded-lg overflow-hidden">
+                              <div className="px-6 py-4">
+                                  <h2 className="text-xl font-semibold text-gray-800 mb-2">{plan.name}</h2>
+                                  <div className="grid grid-cols-2 gap-2">
+                                      {plan.exercises.map((ex : Exercise) => (
+                                          <div key={ex.name} className="bg-gray-100 p-4 rounded-lg">
+                                              <img src={ex.photo} alt="Exercise Photo" className="w-full h-32 object-cover rounded-lg" />
+                                              <div className="text-gray-600 text-sm mt-2">
+                                                  <h1 className="mb-1">Exercise Name: {ex.name}</h1>
+                                                  <h1>Category: {ex.category}</h1>
+                                                  {plan.properties.filter(prop => prop.forExercise == ex.name).map((filterProp : Property, index : number) => (
+                                                      <div key={index}>
+                                                          <h1 key={`${index}1`}>Reps: {filterProp.reps}</h1>
+                                                          <h1 key={`${index}2`}>Sets: {filterProp.sets}</h1>
+                                                          <h1 key={`${index}3`}>Weight: {filterProp.weight}kg</h1>
+                                                      </div>
+                                                  ))}
+                                              </div>
+                                          </div>
+                                      ))}
+                                  </div>
+                                  <br/>
+                                  <button className="ml-2 bg-red-400 text-white rounded px-3 py-1 focus:outline-none hover:bg-red-600" onClick={() => handleDeletePlan(plan.planId)}>Remove</button>
 
-                           </div>
-                       </div>
-                   ))}
-               </div>
+                              </div>
+                          </div>
+                      ))}
+                  </div>
+              </div>
 
 
 
