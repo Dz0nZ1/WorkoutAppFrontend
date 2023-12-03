@@ -6,17 +6,19 @@ import {API_ENDPOINTS} from "@/data/endpoints";
 
 export const useGetExercises = () => {
 
-    const {data: session} = useSession();
-
     const axiosAuth = useAuth();
+
+    const {data:session} = useSession();
+
+    const headers = {
+        // @ts-ignore
+        Authorization: `Bearer ${session?.user?.access_token}`
+    }
+
 
     const fetchExercises = async () => {
         try {
-            const headers = {
-                // @ts-ignore
-                Authorization: `Bearer ${session?.user?.access_token}`
-            }
-            const res = await axiosAuth.get(API_ENDPOINTS.EXERCISE_GET_ALL, {headers});
+            const res = await axiosAuth.get(API_ENDPOINTS.EXERCISE_GET_ALL, {headers},);
             return res.data;
         }catch (error){
             console.log(error);
@@ -41,6 +43,6 @@ export const useGetExercises = () => {
             revalidateOnReconnect: true
         });
 
-    return {data, error, isLoading, revalidateExercises};
+    return {fetchExercises ,data, error, isLoading, revalidateExercises};
 
 }
