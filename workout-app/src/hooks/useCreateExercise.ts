@@ -3,14 +3,15 @@ import {SWR_KEYS} from "@/data/swrKeys";
 import {useSession} from "next-auth/react";
 import useAuth from "@/hooks/useAuth";
 import {API_ENDPOINTS} from "@/data/endpoints";
+import {CreateExercise} from "@/types/entities";
 
 // @ts-ignore
-export const useCreateExercise = (data) => {
+export const useCreateExercise = (data?) => {
 
     const { data: session } = useSession();
     const axiosAuth = useAuth();
 
-    const createExercise = async (data : any) => {
+    const createExercise = async ( data : CreateExercise) => {
         try {
             const headers = {
                 // @ts-ignore
@@ -22,9 +23,13 @@ export const useCreateExercise = (data) => {
         }
     };
 
+    const createExerciseHandler = (data? : any) => {
+        return createExercise(data);
+    };
+
     const { error, isLoading } = useSWR(
-        `${SWR_KEYS.EXERCISE_CREATE}`,
-        () => createExerciseHandler(data),
+        data ? `${SWR_KEYS.EXERCISE_CREATE}` : null,
+        () => createExerciseHandler(),
         {
             refreshInterval: 90000,
             revalidateIfStale: true,
@@ -33,9 +38,6 @@ export const useCreateExercise = (data) => {
             revalidateOnReconnect: true
         });
 
-    const createExerciseHandler = (data : any) => {
-        return createExercise(data);
-    };
 
     return {
         createExercise: createExerciseHandler,
