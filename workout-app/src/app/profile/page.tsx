@@ -1,16 +1,18 @@
 'use client'
 import {useSession} from "next-auth/react";
-import {useGetPlansWithId} from "@/hooks/useGetPlansWithId";
+import {useGetPlansWithUserId} from "@/hooks/useGetPlansWithUserId";
 import {useDeletePlan} from "@/hooks/useDeletePlan";
-import {Exercise, Plan, Property} from "@/types/entities";
+import {Plan} from "@/types/entities";
 import toast from "react-hot-toast";
+import Link from "next/link";
+import React from "react";
 
 
 export default function ProfilePage(){
 
      const {data : session} = useSession();
     //@ts-ignore
-     const {data: allUserPlans, revalidatePlans} = useGetPlansWithId(session?.user.user_id);
+     const {data: allUserPlans, revalidatePlans} = useGetPlansWithUserId(session?.user.user_id);
      //@ts-ignore
      const {deletePlanById} = useDeletePlan()
 
@@ -83,35 +85,25 @@ export default function ProfilePage(){
                 <br/><br/>
               <div className="container mx-auto">
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                      {allUserPlans?.map((plan : Plan) => (
-                          <div key={plan.name} className="bg-white shadow-lg rounded-lg overflow-hidden">
-                              <div className="px-6 py-4">
-                                  <h2 className="text-xl font-semibold text-gray-800 mb-2">{plan.name}</h2>
-                                  <div className="grid grid-cols-2 gap-2">
-                                      {plan.exercises.map((ex : Exercise) => (
-                                          <div key={ex.name} className="bg-gray-100 p-4 rounded-lg">
-                                              <img src={ex.photo} alt="Exercise Photo" className="w-full h-32 object-cover rounded-lg" />
-                                              <div className="text-gray-600 text-sm mt-2">
-                                                  <h1 className="mb-1">Exercise Name: {ex.name}</h1>
-                                                  <h1>Category: {ex.category}</h1>
-                                                  {plan.properties.filter(prop => prop.forExercise == ex.name).map((filterProp : Property, index : number) => (
-                                                      <div key={index}>
-                                                          <h1 key={`${index}1`}>Reps: {filterProp.reps}</h1>
-                                                          <h1 key={`${index}2`}>Sets: {filterProp.sets}</h1>
-                                                          <h1 key={`${index}3`}>Weight: {filterProp.weight}kg</h1>
-                                                      </div>
-                                                  ))}
-                                              </div>
-                                          </div>
-                                      ))}
+                      {allUserPlans?.map((plan : Plan, index : number) => (
+                          <Link key={index} href={`/profile/${plan.planId}`}>
+                              <div className="bg-gradient-to-r from-white to-gray-150 shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1 h-72">
+                                  <div className="px-6 py-8 flex flex-col justify-between h-full">
+                                      <div className="flex items-center h-full" >
+                                          <h2 className="text-3xl font-bold text-gray-700 text-center w-full">{plan.name}</h2>
+                                      </div>
+                                      <hr className="w-full"/>
+                                      <div className="flex justify-between items-center mt-4">
+                                          <span className="text-sm text-gray-600">Plan created 03.12.2023.</span>
+                                          <button className="bg-red-400 text-white rounded px-3 py-1 focus:outline-none hover:bg-red-600" onClick={() => handleDeletePlan(plan.planId)}>Remove</button>
+                                      </div>
                                   </div>
-                                  <br/>
-                                  <button className="ml-2 bg-red-400 text-white rounded px-3 py-1 focus:outline-none hover:bg-red-600" onClick={() => handleDeletePlan(plan.planId)}>Remove</button>
-
                               </div>
-                          </div>
+                          </Link>
                       ))}
                   </div>
+
+
               </div>
 
 
@@ -124,3 +116,41 @@ export default function ProfilePage(){
        </>
     )
 }
+
+
+
+
+
+//
+// <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+//     {allUserPlans?.map((plan : Plan) => (
+//         <Link key={plan.name} href={`/profile/${plan.planId}`}>
+//             <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+//                 <div className="px-6 py-4">
+//                     <h2 className="text-xl font-semibold text-gray-800 mb-2">{plan.name}</h2>
+//                     <div className="grid grid-cols-2 gap-2">
+//                         {plan.exercises.map((ex : Exercise) => (
+//                             <div key={ex.name} className="bg-gray-100 p-4 rounded-lg">
+//                                 <img src={ex.photo} alt="Exercise Photo" className="w-full h-32 object-cover rounded-lg" />
+//                                 <div className="text-gray-600 text-sm mt-2">
+//                                     <h1 className="mb-1">Exercise Name: {ex.name}</h1>
+//                                     <h1>Category: {ex.category}</h1>
+//                                     {plan.properties.filter(prop => prop.forExercise == ex.name).map((filterProp : Property, index : number) => (
+//                                         <div key={index}>
+//                                             <h1 key={`${index}1`}>Reps: {filterProp.reps}</h1>
+//                                             <h1 key={`${index}2`}>Sets: {filterProp.sets}</h1>
+//                                             <h1 key={`${index}3`}>Weight: {filterProp.weight}kg</h1>
+//                                         </div>
+//                                     ))}
+//                                 </div>
+//                             </div>
+//                         ))}
+//                     </div>
+//                     <br/>
+//                     <button className="ml-2 bg-red-400 text-white rounded px-3 py-1 focus:outline-none hover:bg-red-600" onClick={() => handleDeletePlan(plan.planId)}>Remove</button>
+//
+//                 </div>
+//             </div>
+//         </Link>
+//     ))}
+// </div>
