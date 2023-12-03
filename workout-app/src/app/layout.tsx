@@ -5,6 +5,7 @@ import SessionStatus from "@/components/layout/SessionStatus";
 import {Providers} from "@/app/providers";
 import NewNavBar from "@/components/ui/NewNavBar";
 import Footer from "@/components/ui/footer";
+import {Toaster} from "react-hot-toast";
 
 export const metadata = {
     title: 'MiloNite.app',
@@ -25,6 +26,7 @@ export default function RootLayout({
               <Providers >
                   <NewNavBar/>
                   {children}
+                  <Toaster position="top-right" reverseOrder={false} />
                   <Footer/>
               </Providers>
           </SessionStatus>
