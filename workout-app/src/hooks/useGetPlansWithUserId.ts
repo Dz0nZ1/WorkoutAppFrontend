@@ -4,7 +4,7 @@ import {useSession} from "next-auth/react";
 import useAuth from "@/hooks/useAuth";
 import {API_ENDPOINTS} from "@/data/endpoints";
 
-export const useGetPlansWithId = (id : string | number) => {
+export const useGetPlansWithUserId = (id : string | number) => {
 
     const {data: session} = useSession();
 
