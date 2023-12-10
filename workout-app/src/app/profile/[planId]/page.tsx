@@ -1,6 +1,26 @@
 "use client"
 import {useGetPlan} from "@/hooks/useGetPlan";
-import {Exercise, Plan, Property} from "@/types/entities";
+import {CreateProperty, Exercise, Plan, Property} from "@/types/entities";
+import {
+    Button,
+    Input,
+    Modal,
+    ModalBody,
+    ModalContent,
+    ModalFooter,
+    ModalHeader,
+    useDisclosure,
+    Select,
+    SelectItem
+} from "@nextui-org/react";
+import React, {useState} from "react";
+import {useSession} from "next-auth/react";
+import {useGetPropertiesByPlan} from "@/hooks/useGetPropertiesByPlan";
+import toast from "react-hot-toast";
+import {useGetExercises} from "@/hooks/useGetExercises";
+import {useGetExerciseById} from "@/hooks/useGetExerciseById";
+import {useUpdateProperty} from "@/hooks/useUpdateProperty";
+import {useUpdatePlan} from "@/hooks/useUpdatePlan";
 
 interface PageProps {
     params: {
@@ -17,15 +37,185 @@ interface getPlan {
 
 export default function Plan ({params} : PageProps) {
 
-
+    const {data:session} = useSession()
     const {data:plan, error, isLoading , revalidatePlan} : getPlan = useGetPlan(params.planId)
-    console.log(plan);
+    const {data:newExercises} = useGetExercises();
+    const {getExerciseById} = useGetExerciseById()
+    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const [updatedPlan, setUpdatedPlan] = useState({
+        name: "",
+        identity: session?.user.user_id,
+        exercises: plan?.exercises,
+        properties: plan?.properties,
+    });
+    const [newProperty, setNewProperty] = useState<CreateProperty>({
+        forExercise:"",
+        reps: "",
+        sets: "",
+        weight: ""
+    })
+    const {data:properties} = useGetPropertiesByPlan(params.planId);
+    const {updateProperty} = useUpdateProperty();
+    const {updatePlan} = useUpdatePlan();
+    const [selectedProperty, setSelectedProperty] = useState({
+        propertyId: '',
+        reps:"",
+        sets:"",
+        weight:"",
+        forExercise: ""
+    });
+
+
+    const [selectedExercise, setSelectedExercise] = useState(null);
+
+    const handleExerciseClick = (exerciseId : any) => {
+        setSelectedExercise(exerciseId);
+    };
+
+    const renderInputs = () => {
+        if (selectedExercise) {
+            return (
+                <>
+                    <Input onChange={(e) => setNewProperty({...newProperty, reps:e.target.value})} type="number" placeholder="Reps" />
+                    <Input onChange={(e) => setNewProperty({...newProperty, sets:e.target.value})} type="number" placeholder="Sets" />
+                    <Input onChange={(e) => setNewProperty({...newProperty, weight:e.target.value})} type="number" placeholder="Weight" />
+                </>
+            );
+        }
+        return null;
+    };
+
+
+    const handleOnChange = async (e : any) => {
+        if(e.target.value == "") return;
+        const filteredProperty = properties.find((property : Property) => property.forExercise === e.target.value);
+        setSelectedProperty(filteredProperty);
+        console.log(selectedProperty)
+    }
+
+    const handleDeleteExercise = (name : string) => {
+           const filteredExercise = plan?.exercises.filter(x => x.name !== name);
+           const filteredProperties = properties?.filter((x : Property) => x.forExercise !== name);
+           setUpdatedPlan({...updatedPlan, exercises: filteredExercise, properties: filteredProperties});
+           toast.success("Exercise will be removed once updated");
+    }
+
+    const handleAddExercise = async (e: any) => {
+        const newExercise = await getExerciseById(e.target.value);
+        const oldExercisePlan : Exercise[] = updatedPlan.exercises;
+        const newExercisePlan : Exercise[] = [...oldExercisePlan, newExercise];
+        setUpdatedPlan({...updatedPlan, exercises: newExercisePlan})
+    }
+
+    const handleOnChangeCreate = ()  => {
+        return
+    }
+
+
+    const handleUpdate =  async () : Promise<void> => {
+            const dummy = plan?.properties.find(x => x.forExercise === selectedProperty.forExercise);
+            if(dummy !== undefined) {
+                // @ts-ignore
+                const {propertyId ,...other} = dummy;
+                const newProperty : Property = {...selectedProperty, propertyId: propertyId};
+                setUpdatedPlan({...updatedPlan, properties: [newProperty]});
+                await toast.promise(updateProperty(newProperty, newProperty.propertyId).then(() => revalidatePlan()), {
+                    loading: 'Loading',
+                    success: 'Plan was updated successfully',
+                    error: 'Error updating plan',
+                });
+            }
+        if(updatedPlan.name != "") {
+            await toast.promise(updatePlan(updatedPlan, params.planId).then(() => revalidatePlan()), {
+                loading: 'Loading',
+                success: 'Plan was updated successfully',
+                error: 'Error updating plan',
+            });
+        }
+    }
 
     return(
         <>
             {plan && (
                 <>
-                    <h2 className="text-5xl text-center font-extrabold text-gray-700 mb-2 mt-24 mb-24">{plan.name}</h2>
+                    <h2 className="text-5xl text-center font-extrabold text-gray-700 mb-7 mt-24">{plan.name}</h2>
+                    <div className="w-full h-full flex flex-row justify-center items-center mb-24">
+                        <Button onPress={onOpen} className="ml-2 bg-blue-400 text-white rounded px-7 py-1 mt-2.5 focus:outline-none hover:bg-blue-600" color="primary">Update plan</Button>
+                        <Modal
+                            placement="center"
+                            size={"5xl"}
+                            backdrop="opaque"
+                            isOpen={isOpen}
+                            onOpenChange={onOpenChange}
+                            classNames={{
+                                backdrop: "bg-gradient-to-t from-zinc-500 to-zinc-900/10 backdrop-opacity-20"
+                            }}
+                        >
+                            <ModalContent>
+                                {(onClose) => (
+                                    <>
+                                        <ModalHeader className="flex flex-col gap-1">
+                                            <div className="flex flex-row justify-center items-center">Update your plan</div>
+                                        </ModalHeader>
+                                        <ModalBody>
+                                            <div className="flex justify-center w-full">
+                                                <Input
+                                                    onChange={(e) => setUpdatedPlan({...updatedPlan, name: e.target.value})}
+                                                    placeholder={plan.name}
+                                                    type="text"
+                                                    className="w-1/3"
+                                                    />
+                                            </div>
+                                            <label htmlFor="update_exercise" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-center">
+                                                Choose the exercise you want to update</label>
+                                            <div className="flex flex-col mx-auto gap-4">
+                                                <Select
+                                                    items={plan?.exercises}
+                                                    onChange={handleOnChange}
+                                                    label="Select exercise"
+                                                    className="max-w-xs"
+                                                >
+                                                    {(ex : Exercise) => <SelectItem value={ex.name} key={ex.name}>
+                                                        {ex.name}
+                                                    </SelectItem>}
+                                                </Select>
+                                                <Input onChange={(e) => setSelectedProperty({...selectedProperty, reps:e.target.value})} type="text" value={(selectedProperty?.reps)?.toString()}/>
+                                                <Input onChange={(e) => setSelectedProperty({...selectedProperty, sets:e.target.value})} type="text" value={(selectedProperty?.sets)?.toString()}/>
+                                                <Input onChange={(e) => setSelectedProperty({...selectedProperty, weight:e.target.value})} type="text" value={(selectedProperty?.weight)?.toString()}/>
+                                                {selectedProperty && <Button onClick={() => handleDeleteExercise(selectedProperty?.forExercise)}>Delete {selectedProperty?.forExercise}</Button>}
+                                                <Select
+                                                    onChange={handleOnChangeCreate}
+                                                    label="Add exercise to plan"
+                                                    className="max-w-xs"
+                                                >
+                                                    {newExercises
+                                                        .filter((x: Exercise) => !plan?.exercises.some((y: Exercise) => x.exerciseId === y.exerciseId))
+                                                        .map((remainingExercise: Exercise) => (
+                                                            <SelectItem
+                                                                onClick={() => handleExerciseClick(remainingExercise.exerciseId)}
+                                                                key={remainingExercise.exerciseId} value={remainingExercise.exerciseId}>
+                                                                {remainingExercise.name}
+                                                            </SelectItem>
+                                                        ))}
+                                                </Select>
+                                                {selectedExercise && renderInputs()}
+                                            </div>
+
+
+                                        </ModalBody>
+                                        <ModalFooter>
+                                            <Button color="primary" variant="light" onPress={onClose}>
+                                                Close
+                                            </Button>
+                                            <Button onClick={handleUpdate} color="success" className="text-white shadow-lg shadow-indigo-500/20" onPress={onClose}>
+                                                Update
+                                            </Button>
+                                        </ModalFooter>
+                                    </>
+                                )}
+                            </ModalContent>
+                        </Modal>
+                    </div>
                     <div className="container mx-auto mb-16">
                         <div className="px-6 py-4">
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
