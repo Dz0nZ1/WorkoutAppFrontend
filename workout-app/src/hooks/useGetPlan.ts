@@ -45,6 +45,6 @@ export const useGetPlan = (id? : string | number) => {
             revalidateOnReconnect: true
         });
 
-    return {data, error, isLoading, revalidatePlan};
+    return {getPlan:getPlanHandler, data, error, isLoading, revalidatePlan};
 
 }
