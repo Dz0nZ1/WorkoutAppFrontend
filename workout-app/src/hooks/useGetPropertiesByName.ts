@@ -29,7 +29,7 @@ export const useGetPropertiesByName = (name? : string) => {
     };
 
     const {data, error, isLoading} = useSWR(
-        name ? `${SWR_KEYS.PROPERTY_GET_FOR_PLAN}${name}` : null, () => {
+        name ? `${SWR_KEYS.PROPERTY_GET_FOR_EXERCISE}${name}` : null, () => {
             return getPropertiesByIdHandler(name);
         },
         {
