@@ -29,6 +29,7 @@ export const API_ENDPOINTS = {
 
     //PROPERTIES ENDPOINTS
     PROPERTY_GET_ALL: "/api/v1/properties/all",
+    PROPERTY_GET_ALL_FROM_PLAN: "/api/v1/properties/plan/",
     PROPERTY_GET: "/api/v1/properties/get/",
     PROPERTY_CREATE: "/api/v1/properties/create",
     PROPERTY_UPDATE: "/api/v1/properties/update/",
