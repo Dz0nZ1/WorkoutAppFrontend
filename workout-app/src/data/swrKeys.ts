@@ -24,7 +24,8 @@ export const SWR_KEYS = {
 
    PROPERTY_GET_ALL: "getAllProperty",
    PROPERTY_GET: "getProperty",
-   PROPERTY_GET_FOR_PLAN: "getPropertyForPlan",
+   PROPERTY_GET_FOR_EXERCISE: "getPropertyForExercise",
+   PROPERTY_GET_FOR_PLAN: "getPropertyFroPlan",
    PROPERTY_CREATE: "createProperty",
    PROPERTY_UPDATE: "updateProperty",
    PROPERTY_DELETE: "deleteProperty",
