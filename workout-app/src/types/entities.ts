@@ -6,7 +6,6 @@
     }
 
     export interface CreateProperty {
-        forPlan : string;
         forExercise : string;
         sets : string | number;
         reps : string | number;
@@ -39,7 +38,6 @@
 
     export interface Property {
         propertyId: string | number;
-        forPlan : string;
         forExercise : string;
         sets : string | number;
         reps : string | number;
