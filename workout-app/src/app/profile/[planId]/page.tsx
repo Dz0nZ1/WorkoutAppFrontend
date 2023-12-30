@@ -43,7 +43,7 @@ export default function Plan ({params} : PageProps) {
     const {getExerciseById} = useGetExerciseById()
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [updatedPlan, setUpdatedPlan] = useState({
-        name: "",
+        name: plan?.name,
         identity: session?.user.user_id,
         exercises: plan?.exercises,
         properties: plan?.properties,
@@ -66,25 +66,6 @@ export default function Plan ({params} : PageProps) {
     });
 
 
-    const [selectedExercise, setSelectedExercise] = useState(null);
-
-    const handleExerciseClick = (exerciseId : any) => {
-        setSelectedExercise(exerciseId);
-    };
-
-    const renderInputs = () => {
-        if (selectedExercise) {
-            return (
-                <>
-                    <Input onChange={(e) => setNewProperty({...newProperty, reps:e.target.value})} type="number" placeholder="Reps" />
-                    <Input onChange={(e) => setNewProperty({...newProperty, sets:e.target.value})} type="number" placeholder="Sets" />
-                    <Input onChange={(e) => setNewProperty({...newProperty, weight:e.target.value})} type="number" placeholder="Weight" />
-                </>
-            );
-        }
-        return null;
-    };
-
 
     const handleOnChange = async (e : any) => {
         if(e.target.value == "") return;
@@ -98,17 +79,6 @@ export default function Plan ({params} : PageProps) {
            const filteredProperties = properties?.filter((x : Property) => x.forExercise !== name);
            setUpdatedPlan({...updatedPlan, exercises: filteredExercise, properties: filteredProperties});
            toast.success("Exercise will be removed once updated");
-    }
-
-    const handleAddExercise = async (e: any) => {
-        const newExercise = await getExerciseById(e.target.value);
-        const oldExercisePlan : Exercise[] = updatedPlan.exercises;
-        const newExercisePlan : Exercise[] = [...oldExercisePlan, newExercise];
-        setUpdatedPlan({...updatedPlan, exercises: newExercisePlan})
-    }
-
-    const handleOnChangeCreate = ()  => {
-        return
     }
 
 
@@ -125,13 +95,11 @@ export default function Plan ({params} : PageProps) {
                     error: 'Error updating plan',
                 });
             }
-        if(updatedPlan.name != "") {
             await toast.promise(updatePlan(updatedPlan, params.planId).then(() => revalidatePlan()), {
                 loading: 'Loading',
                 success: 'Plan was updated successfully',
                 error: 'Error updating plan',
             });
-        }
     }
 
     return(
@@ -143,7 +111,7 @@ export default function Plan ({params} : PageProps) {
                         <Button onPress={onOpen} className="ml-2 bg-blue-400 text-white rounded px-7 py-1 mt-2.5 focus:outline-none hover:bg-blue-600" color="primary">Update plan</Button>
                         <Modal
                             placement="center"
-                            size={"5xl"}
+                            size={"2xl"}
                             backdrop="opaque"
                             isOpen={isOpen}
                             onOpenChange={onOpenChange}
@@ -161,6 +129,7 @@ export default function Plan ({params} : PageProps) {
                                             <div className="flex justify-center w-full">
                                                 <Input
                                                     onChange={(e) => setUpdatedPlan({...updatedPlan, name: e.target.value})}
+                                                    // placeholder={updatedPlan.name}
                                                     placeholder={plan.name}
                                                     type="text"
                                                     className="w-1/3"
@@ -183,22 +152,6 @@ export default function Plan ({params} : PageProps) {
                                                 <Input onChange={(e) => setSelectedProperty({...selectedProperty, sets:e.target.value})} type="text" value={(selectedProperty?.sets)?.toString()}/>
                                                 <Input onChange={(e) => setSelectedProperty({...selectedProperty, weight:e.target.value})} type="text" value={(selectedProperty?.weight)?.toString()}/>
                                                 {selectedProperty && <Button onClick={() => handleDeleteExercise(selectedProperty?.forExercise)}>Delete {selectedProperty?.forExercise}</Button>}
-                                                <Select
-                                                    onChange={handleOnChangeCreate}
-                                                    label="Add exercise to plan"
-                                                    className="max-w-xs"
-                                                >
-                                                    {newExercises
-                                                        .filter((x: Exercise) => !plan?.exercises.some((y: Exercise) => x.exerciseId === y.exerciseId))
-                                                        .map((remainingExercise: Exercise) => (
-                                                            <SelectItem
-                                                                onClick={() => handleExerciseClick(remainingExercise.exerciseId)}
-                                                                key={remainingExercise.exerciseId} value={remainingExercise.exerciseId}>
-                                                                {remainingExercise.name}
-                                                            </SelectItem>
-                                                        ))}
-                                                </Select>
-                                                {selectedExercise && renderInputs()}
                                             </div>
 
 
