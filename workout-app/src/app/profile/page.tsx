@@ -5,16 +5,20 @@ import {useDeletePlan} from "@/hooks/useDeletePlan";
 import {Plan} from "@/types/entities";
 import toast from "react-hot-toast";
 import Link from "next/link";
-import React from "react";
+import React, {useState} from "react";
+import {Modal, ModalContent, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
 
 
 export default function ProfilePage(){
 
+    const {isOpen, onOpen, onClose} = useDisclosure();
      const {data : session} = useSession();
     //@ts-ignore
      const {data: allUserPlans, revalidatePlans} = useGetPlansWithUserId(session?.user.user_id);
      //@ts-ignore
      const {deletePlanById} = useDeletePlan()
+
+    const [selectedPlanId, setSelectedPlanId] = useState<string | number>("");
 
     console.log(allUserPlans);
     console.log(session);
@@ -25,6 +29,11 @@ export default function ProfilePage(){
           success: 'Plan was successfully deleted',
           error: 'Error deleting this plan',
       });
+      onClose();
+  }
+
+  const handleSelection = (id: string | number) => {
+      setSelectedPlanId(id);
   }
 
 
@@ -71,7 +80,7 @@ export default function ProfilePage(){
                                            <dt className="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
                                                Number of plans
                                            </dt>
-                                           <dd className="order-1 text-5xl font-extrabold text-gray-700">{allUserPlans?.length}</dd>
+                                           <dd className="order-1 text-5xl font-extrabold text-gray-700">{allUserPlans?.length ? allUserPlans?.length : 0}</dd>
                                        </div>
                                    </dl>
                                </div>
@@ -86,21 +95,48 @@ export default function ProfilePage(){
               <div className="container mx-auto">
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                       {allUserPlans?.map((plan : Plan, index : number) => (
-                          <Link key={index} href={`/profile/${plan.planId}`}>
-                              <div className="bg-gradient-to-r from-white to-gray-150 shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1 h-72">
+
+                              <div key={plan.planId} className="bg-gradient-to-r from-white to-gray-150 shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1 h-72">
                                   <div className="px-6 py-8 flex flex-col justify-between h-full">
-                                      <div className="flex items-center h-full" >
-                                          <h2 className="text-3xl font-bold text-gray-700 text-center w-full">{plan.name}</h2>
-                                      </div>
+                                          <Link className="flex items-center h-full w-full"  key={index} href={`/profile/${plan.planId}`}>
+                                          <h2  className="text-3xl font-bold text-gray-700 text-center w-full">{plan.name}</h2>
+                                          </Link>
                                       <hr className="w-full"/>
                                       <div className="flex justify-between items-center mt-4">
                                           <span className="text-sm text-gray-600">Plan created 03.12.2023.</span>
-                                          <button className="bg-red-400 text-white rounded px-3 py-1 focus:outline-none hover:bg-red-600" onClick={() => handleDeletePlan(plan.planId)}>Remove</button>
+                                          <Button className="bg-red-400 text-white rounded px-3 py-1 focus:outline-none hover:bg-red-600 z-10" onClick={(event) => {
+                                              handleSelection(plan.planId)
+                                          }} onPress={() => onOpen()}>Remove</Button>
                                       </div>
                                   </div>
                               </div>
-                          </Link>
                       ))}
+                      <Modal
+                          size={"lg"}
+                          isOpen={isOpen}
+                          onClose={onClose}
+                      >
+                          <ModalContent>
+                              {(onClose) => (
+                                  <>
+                                      {/*<ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>*/}
+                                      <ModalBody>
+                                          <p>
+                                              Are you sure you want to delete this plan?
+                                          </p>
+                                      </ModalBody>
+                                      <ModalFooter>
+                                          <Button color="danger" variant="light" onPress={onClose}>
+                                              Close
+                                          </Button>
+                                          <Button color="primary" onClick={() => handleDeletePlan(selectedPlanId)}>
+                                              Delete plan
+                                          </Button>
+                                      </ModalFooter>
+                                  </>
+                              )}
+                          </ModalContent>
+                      </Modal>
                   </div>
 
 
