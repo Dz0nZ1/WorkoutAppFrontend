@@ -1,7 +1,7 @@
 "use client"
 
 import {useGetExercises} from "@/hooks/useGetExercises";
-import {Table, TableBody, TableCell, TableColumn, TableHeader, TableRow} from "@nextui-org/react";
+import {Button, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow} from "@nextui-org/react";
 import {useGetUsers} from "@/hooks/useGetUsers";
 import {useSession} from "next-auth/react";
 import {useState} from "react";
@@ -224,17 +224,18 @@ export default function AdminPage() {
 
                 <h1 className="text-3xl text-blue-400 flex justify-center mt-16 mb-4">Manage Exercises</h1>
                 <div className="flex justify-center space-x-4">
-                    <button onClick={() => {setMangeStatus((manageStatus : ExerciseStatus) => ExerciseStatus.CREATE)}}
-                        className="px-4 py-2 text-white bg-blue-400 hover:bg-blue-500 rounded-lg">
+                    <Button onClick={() => {setMangeStatus((manageStatus : ExerciseStatus) => ExerciseStatus.CREATE)}}
+                            className="bg-blue-400 text-white">
                         CREATE
-                    </button>
-                    <button onClick={() => {setMangeStatus((manageStatus : ExerciseStatus) => ExerciseStatus.UPDATE)}} className="px-4 py-2 text-white bg-blue-400 hover:bg-blue-500 rounded-lg">
+                    </Button>
+                    <Button onClick={() => {setMangeStatus((manageStatus : ExerciseStatus) => ExerciseStatus.UPDATE)}}
+                            className="bg-blue-400 text-white">
                         UPDATE
-                    </button>
-                    <button onClick={() => {setMangeStatus((manageStatus : ExerciseStatus) => ExerciseStatus.DELETE)}}
-                        className="px-4 py-2 text-white bg-blue-400 hover:bg-blue-500 rounded-lg">
+                    </Button>
+                    <Button onClick={() => {setMangeStatus((manageStatus : ExerciseStatus) => ExerciseStatus.DELETE)}}
+                            className="bg-blue-400 text-white">
                         DELETE
-                    </button>
+                    </Button>
                 </div><br/>
 
 
@@ -242,7 +243,7 @@ export default function AdminPage() {
                 <form >
                     {manageStatus === ExerciseStatus.CREATE &&
 
-                        <div className="w-1/2 flex flex-col items-center m-auto mb-24">
+                        <div className="w-1/3 flex flex-col items-center m-auto mb-24">
                             <div className="relative z-0 w-full mb-6 group">
                                 <input type="text" name="name" id="name"
                                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -291,7 +292,7 @@ export default function AdminPage() {
                         <>
                             <label htmlFor="update_exercise" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-center">
                                 Choose the exercise you want to update</label>
-                           <div className="flex justify-center">
+                           <div className="flex justify-center w-1/3 m-auto">
                                <select onChange={handleUpdateChange}
                                        id="update_exercise"
                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-7">
@@ -305,7 +306,7 @@ export default function AdminPage() {
                            </div>
 
 
-                            <div className="w-1/2 flex flex-col items-center m-auto mb-24">
+                            <div className="w-1/3 flex flex-col items-center m-auto mb-24">
                                 <div className="relative z-0 w-full mb-6 group">
 
                                     <input type="text" name="name" id="name"
