@@ -1,7 +1,7 @@
 import useSWR, {mutate} from "swr";
 import {SWR_KEYS} from "@/data/swrKeys";
 import {useSession} from "next-auth/react";
-import useAuth from "@/hooks/useAuth";
+import useAuth from "@/hooks/auth/useAuth";
 import {API_ENDPOINTS} from "@/data/endpoints";
 
 export const useGetUsers = () => {
