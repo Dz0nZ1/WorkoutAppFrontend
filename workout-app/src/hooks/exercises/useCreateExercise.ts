@@ -1,36 +1,35 @@
 import useSWR from "swr";
 import {SWR_KEYS} from "@/data/swrKeys";
 import {useSession} from "next-auth/react";
-import useAuth from "@/hooks/useAuth";
+import useAuth from "@/hooks/auth/useAuth";
 import {API_ENDPOINTS} from "@/data/endpoints";
+import {CreateExercise} from "@/types/entities";
 
 // @ts-ignore
-export const useDeleteExerciseById = (id? : string | number) => {
+export const useCreateExercise = (data?) => {
 
-    const {data: session} = useSession();
-
+    const { data: session } = useSession();
     const axiosAuth = useAuth();
 
-    const deleteExercise = async (id? : string | number) => {
+    const createExercise = async ( data : CreateExercise) => {
         try {
             const headers = {
                 // @ts-ignore
                 Authorization: `Bearer ${session?.user?.access_token}`
             }
-            const res = await axiosAuth.delete(`${API_ENDPOINTS.EXERCISE_DELETE}${id}`, {headers});
-        }catch (error){
+            const res = await axiosAuth.post(API_ENDPOINTS.EXERCISE_CREATE, data, { headers });
+        } catch (error) {
             console.log(error);
         }
-
     };
 
-    const deleteExerciseHandler = (id : any) => {
-        return deleteExercise(id);
+    const createExerciseHandler = (data? : any) => {
+        return createExercise(data);
     };
 
     const { error, isLoading } = useSWR(
-        id ? `${SWR_KEYS.EXERCISE_DELETE}${id}` : null,
-        () => deleteExerciseHandler(id),
+        data ? `${SWR_KEYS.EXERCISE_CREATE}` : null,
+        () => createExerciseHandler(),
         {
             refreshInterval: 90000,
             revalidateIfStale: true,
@@ -41,7 +40,7 @@ export const useDeleteExerciseById = (id? : string | number) => {
 
 
     return {
-        deleteExercise: deleteExerciseHandler,
+        createExercise: createExerciseHandler,
         error,
         isLoading
     };

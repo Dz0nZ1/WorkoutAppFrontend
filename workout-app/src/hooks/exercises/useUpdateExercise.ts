@@ -1,35 +1,33 @@
+import {useSession} from "next-auth/react";
+import useAuth from "@/hooks/auth/useAuth";
+import {API_ENDPOINTS} from "@/data/endpoints";
 import useSWR from "swr";
 import {SWR_KEYS} from "@/data/swrKeys";
-import {useSession} from "next-auth/react";
-import useAuth from "@/hooks/useAuth";
-import {API_ENDPOINTS} from "@/data/endpoints";
-import {CreateExercise} from "@/types/entities";
 
-// @ts-ignore
-export const useCreateExercise = (data?) => {
+export const useUpdateExercise = (data? : any, id? : string | number) => {
 
     const { data: session } = useSession();
     const axiosAuth = useAuth();
 
-    const createExercise = async ( data : CreateExercise) => {
+    const updateExercise = async ( data? : any, id? : string | number) => {
         try {
             const headers = {
                 // @ts-ignore
                 Authorization: `Bearer ${session?.user?.access_token}`
             }
-            const res = await axiosAuth.post(API_ENDPOINTS.EXERCISE_CREATE, data, { headers });
+            const res = await axiosAuth.put(`${API_ENDPOINTS.EXERCISE_UPDATE}${id}`, data, { headers });
         } catch (error) {
             console.log(error);
         }
     };
 
-    const createExerciseHandler = (data? : any) => {
-        return createExercise(data);
+    const updateExerciseHandler = (data : any, id? : string | number) => {
+        return updateExercise(data, id);
     };
 
     const { error, isLoading } = useSWR(
-        data ? `${SWR_KEYS.EXERCISE_CREATE}` : null,
-        () => createExerciseHandler(),
+        id ? `${SWR_KEYS.EXERCISE_UPDATE}/${id}` : null,
+        () => updateExerciseHandler(data, id),
         {
             refreshInterval: 90000,
             revalidateIfStale: true,
@@ -40,7 +38,7 @@ export const useCreateExercise = (data?) => {
 
 
     return {
-        createExercise: createExerciseHandler,
+        updateExercise: updateExerciseHandler,
         error,
         isLoading
     };
