@@ -1,35 +1,33 @@
+import {useSession} from "next-auth/react";
+import useAuth from "@/hooks/auth/useAuth";
+import {API_ENDPOINTS} from "@/data/endpoints";
 import useSWR from "swr";
 import {SWR_KEYS} from "@/data/swrKeys";
-import {useSession} from "next-auth/react";
-import useAuth from "@/hooks/useAuth";
-import {API_ENDPOINTS} from "@/data/endpoints";
-import {CreateProperty} from "@/types/entities";
 
-// @ts-ignore
-export const useCreateProperty = (data?) => {
+export const useUpdateProperty = (data? : any, id? : string | number) => {
 
     const { data: session } = useSession();
     const axiosAuth = useAuth();
 
-    const createProperty = async ( data : CreateProperty) => {
+    const updateProperty = async ( data? : any, id? : string | number) => {
         try {
             const headers = {
                 // @ts-ignore
                 Authorization: `Bearer ${session?.user?.access_token}`
             }
-            const res = await axiosAuth.post(API_ENDPOINTS.PROPERTY_CREATE, data, { headers });
+            const res = await axiosAuth.put(`${API_ENDPOINTS.PROPERTY_UPDATE}${id}`, data, { headers });
         } catch (error) {
             console.log(error);
         }
     };
 
-    const createPropertyHandler = (data? : any) => {
-        return createProperty(data);
+    const updatePropertyHandler = (data : any, id? : string | number) => {
+        return updateProperty(data, id);
     };
 
     const { error, isLoading } = useSWR(
-        data ? `${SWR_KEYS.PROPERTY_CREATE}` : null,
-        () => createPropertyHandler(),
+        id ? `${SWR_KEYS.PROPERTY_UPDATE}/${id}` : null,
+        () => updatePropertyHandler(data, id),
         {
             refreshInterval: 90000,
             revalidateIfStale: true,
@@ -40,7 +38,7 @@ export const useCreateProperty = (data?) => {
 
 
     return {
-        createProperty: createPropertyHandler,
+        updateProperty: updatePropertyHandler,
         error,
         isLoading
     };

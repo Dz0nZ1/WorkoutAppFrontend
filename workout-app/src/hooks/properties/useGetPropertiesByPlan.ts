@@ -1,5 +1,5 @@
 import {useSession} from "next-auth/react";
-import useAuth from "@/hooks/useAuth";
+import useAuth from "@/hooks/auth/useAuth";
 import {API_ENDPOINTS} from "@/data/endpoints";
 import useSWR from "swr";
 import {SWR_KEYS} from "@/data/swrKeys";
