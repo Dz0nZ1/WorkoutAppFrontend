@@ -1,7 +1,7 @@
 'use client'
 import {useSession} from "next-auth/react";
-import {useGetPlansWithUserId} from "@/hooks/useGetPlansWithUserId";
-import {useDeletePlan} from "@/hooks/useDeletePlan";
+import {useGetPlansWithUserId} from "@/hooks/plans/useGetPlansWithUserId";
+import {useDeletePlan} from "@/hooks/plans/useDeletePlan";
 import {Plan} from "@/types/entities";
 import toast from "react-hot-toast";
 import Link from "next/link";

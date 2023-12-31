@@ -1,5 +1,5 @@
 "use client"
-import {useGetPlan} from "@/hooks/useGetPlan";
+import {useGetPlan} from "@/hooks/plans/useGetPlan";
 import {CreateProperty, Exercise, Plan, Property} from "@/types/entities";
 import {
     Button,
@@ -15,12 +15,12 @@ import {
 } from "@nextui-org/react";
 import React, {useState} from "react";
 import {useSession} from "next-auth/react";
-import {useGetPropertiesByPlan} from "@/hooks/useGetPropertiesByPlan";
+import {useGetPropertiesByPlan} from "@/hooks/properties/useGetPropertiesByPlan";
 import toast from "react-hot-toast";
-import {useGetExercises} from "@/hooks/useGetExercises";
-import {useGetExerciseById} from "@/hooks/useGetExerciseById";
-import {useUpdateProperty} from "@/hooks/useUpdateProperty";
-import {useUpdatePlan} from "@/hooks/useUpdatePlan";
+import {useGetExercises} from "@/hooks/exercises/useGetExercises";
+import {useGetExerciseById} from "@/hooks/exercises/useGetExerciseById";
+import {useUpdateProperty} from "@/hooks/properties/useUpdateProperty";
+import {useUpdatePlan} from "@/hooks/plans/useUpdatePlan";
 
 interface PageProps {
     params: {

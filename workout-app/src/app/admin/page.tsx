@@ -1,18 +1,18 @@
 "use client"
 
-import {useGetExercises} from "@/hooks/useGetExercises";
+import {useGetExercises} from "@/hooks/exercises/useGetExercises";
 import {Button, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow} from "@nextui-org/react";
-import {useGetUsers} from "@/hooks/useGetUsers";
+import {useGetUsers} from "@/hooks/users/useGetUsers";
 import {useSession} from "next-auth/react";
 import {useState} from "react";
 import {CreateExercise, Exercise, ExerciseStatus} from "@/types/entities";
-import {useCreateExercise} from "@/hooks/useCreateExercise";
-import {useDeleteExerciseById} from "@/hooks/useDeleteExerciseById";
+import {useCreateExercise} from "@/hooks/exercises/useCreateExercise";
+import {useDeleteExerciseById} from "@/hooks/exercises/useDeleteExerciseById";
 import Loader from "@/components/ui/loader";
 import {User} from "@/types";
 import toast from "react-hot-toast";
-import {useGetExerciseById} from "@/hooks/useGetExerciseById";
-import {useUpdateExercise} from "@/hooks/useUpdateExercise";
+import {useGetExerciseById} from "@/hooks/exercises/useGetExerciseById";
+import {useUpdateExercise} from "@/hooks/exercises/useUpdateExercise";
 
 export default function AdminPage() {
 
