@@ -1,9 +1,9 @@
 "use client"
 import {useSession} from "next-auth/react";
 import {useEffect, useState} from "react";
-import useAuth from "@/hooks/useAuth";
+import useAuth from "@/hooks/auth/useAuth";
 import Loader from "@/components/ui/loader";
-import {useGetUsers} from "@/hooks/useGetUsers";
+import {useGetUsers} from "@/hooks/users/useGetUsers";
 
 export default function UserPage(){
 

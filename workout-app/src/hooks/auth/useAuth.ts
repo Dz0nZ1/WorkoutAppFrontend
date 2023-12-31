@@ -1,5 +1,5 @@
 import {useSession} from "next-auth/react";
-import {useRefreshToken} from "@/hooks/useRefreshToken";
+import {useRefreshToken} from "@/hooks/auth/useRefreshToken";
 import {useEffect} from "react";
 import {axiosAuth} from "@/data/http-client";
 
