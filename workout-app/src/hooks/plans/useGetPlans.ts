@@ -1,38 +1,32 @@
 import useSWR from "swr";
 import {SWR_KEYS} from "@/data/swrKeys";
 import {useSession} from "next-auth/react";
-import useAuth from "@/hooks/useAuth";
+import useAuth from "@/hooks/auth/useAuth";
 import {API_ENDPOINTS} from "@/data/endpoints";
 
-// @ts-ignore
-export const useDeletePlan = (id? : string | number) => {
+export const useGetPlans = () => {
 
     const {data: session} = useSession();
 
     const axiosAuth = useAuth();
 
-    const deletePlan = async (id? : string | number) => {
+    const fetchPlans = async () => {
         try {
             const headers = {
                 // @ts-ignore
                 Authorization: `Bearer ${session?.user?.access_token}`
             }
-            const res = await axiosAuth.delete(`${API_ENDPOINTS.PLAN_DELETE}${id}`, {headers});
+            const res = await axiosAuth.get(API_ENDPOINTS.PLAN_GET_ALL, {headers});
+            return res.data;
         }catch (error){
             console.log(error);
         }
 
     };
 
-    const deletePlanHandler = (id? : any) => {
-        return deletePlan(id);
-    };
-
-
-
-    const {error, isLoading} = useSWR(
-        id ? `${SWR_KEYS.PLAN_DELETE}${id}` : null, () => {
-            return deletePlanHandler(id);
+    const {data, error, isLoading} = useSWR(
+        `${SWR_KEYS.PLAN_GET_ALL}`, () => {
+            return fetchPlans();
         },
         {
             refreshInterval: 90000,
@@ -42,11 +36,6 @@ export const useDeletePlan = (id? : string | number) => {
             revalidateOnReconnect: true
         });
 
-
-    return {
-        deletePlanById: deletePlanHandler,
-        error,
-        isLoading
-    };
+    return {data, error, isLoading};
 
 }

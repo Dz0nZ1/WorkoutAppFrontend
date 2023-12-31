@@ -1,37 +1,33 @@
+import {useSession} from "next-auth/react";
+import useAuth from "@/hooks/auth/useAuth";
+import {API_ENDPOINTS} from "@/data/endpoints";
 import useSWR from "swr";
 import {SWR_KEYS} from "@/data/swrKeys";
-import {useSession} from "next-auth/react";
-import useAuth from "@/hooks/useAuth";
-import {API_ENDPOINTS} from "@/data/endpoints";
-import {Plan} from "@/types/entities";
 
-// @ts-ignore
-export const useCreatePlan = (data?) => {
+export const useUpdatePlan = (data? : any, id? : string | number) => {
 
     const { data: session } = useSession();
     const axiosAuth = useAuth();
 
-    const createPlan = async (data : Plan) => {
+    const updatePlan = async ( data? : any, id? : string | number) => {
         try {
             const headers = {
                 // @ts-ignore
                 Authorization: `Bearer ${session?.user?.access_token}`
             }
-            console.log(headers);
-            const res = await axiosAuth.post(API_ENDPOINTS.PLAN_CREATE, data, { headers });
+            const res = await axiosAuth.put(`${API_ENDPOINTS.PLAN_UPDATE}${id}`, data, { headers });
         } catch (error) {
             console.log(error);
         }
     };
 
-    const createPlanHandler = (data? : any) => {
-        return createPlan(data);
+    const updatePlanHandler = (data : any, id? : string | number) => {
+        return updatePlan(data, id);
     };
 
-
     const { error, isLoading } = useSWR(
-        data ? `${SWR_KEYS.PLAN_CREATE}` : null,
-        () => createPlanHandler(data),
+        id ? `${SWR_KEYS.PLAN_UPDATE}/${id}` : null,
+        () => updatePlanHandler(data, id),
         {
             refreshInterval: 90000,
             revalidateIfStale: true,
@@ -42,7 +38,7 @@ export const useCreatePlan = (data?) => {
 
 
     return {
-        createPlan: createPlanHandler,
+        updatePlan: updatePlanHandler,
         error,
         isLoading
     };

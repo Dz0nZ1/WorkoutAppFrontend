@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { useGetExercises } from "@/hooks/useGetExercises";
+import { useGetExercises } from "@/hooks/exercises/useGetExercises";
 import { useSession } from "next-auth/react";
-import { useCreatePlan } from "@/hooks/useCreatePlan";
+import { useCreatePlan } from "@/hooks/plans/useCreatePlan";
 import {Button, Input} from "@nextui-org/react";
 
 
